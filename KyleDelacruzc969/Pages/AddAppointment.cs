@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace KyleDelacruzc969
+namespace KyleDelacruzc969.Pages
 {
-	public partial class Form1 : Form
+	public partial class AddAppointment : Form
 	{
-		public Form1()
+		public AddAppointment()
 		{
 			InitializeComponent();
 		}

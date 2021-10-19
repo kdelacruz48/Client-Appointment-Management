@@ -46,11 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Pages\AddAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Pages\AddAppointment.Designer.cs">
+      <DependentUpon>AddAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\AddCustomer.Designer.cs">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Calender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\Calender.Designer.cs">
+      <DependentUpon>Calender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\Main.cs">
       <SubType>Form</SubType>
@@ -58,8 +76,38 @@
     <Compile Include="Pages\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ModifyAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\ModifyAppointment.Designer.cs">
+      <DependentUpon>ModifyAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ModifyCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\ModifyCustomer.Designer.cs">
+      <DependentUpon>ModifyCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\Reports.Designer.cs">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Pages\Calender.resx">
+      <DependentUpon>Calender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Reports.resx">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
