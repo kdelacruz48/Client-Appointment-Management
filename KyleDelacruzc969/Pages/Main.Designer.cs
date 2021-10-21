@@ -108,10 +108,11 @@ namespace KyleDelacruzc969.Pages
 			this.buttonLogOut.TabIndex = 6;
 			this.buttonLogOut.Text = "Log Out";
 			this.buttonLogOut.UseVisualStyleBackColor = true;
+			this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
 			// 
 			// buttonAddA
 			// 
-			this.buttonAddA.Location = new System.Drawing.Point(263, 228);
+			this.buttonAddA.Location = new System.Drawing.Point(244, 228);
 			this.buttonAddA.Name = "buttonAddA";
 			this.buttonAddA.Size = new System.Drawing.Size(75, 39);
 			this.buttonAddA.TabIndex = 7;
@@ -120,7 +121,7 @@ namespace KyleDelacruzc969.Pages
 			// 
 			// buttonModifyA
 			// 
-			this.buttonModifyA.Location = new System.Drawing.Point(363, 230);
+			this.buttonModifyA.Location = new System.Drawing.Point(335, 228);
 			this.buttonModifyA.Name = "buttonModifyA";
 			this.buttonModifyA.Size = new System.Drawing.Size(75, 39);
 			this.buttonModifyA.TabIndex = 8;
@@ -129,7 +130,7 @@ namespace KyleDelacruzc969.Pages
 			// 
 			// buttonDeleteA
 			// 
-			this.buttonDeleteA.Location = new System.Drawing.Point(464, 228);
+			this.buttonDeleteA.Location = new System.Drawing.Point(428, 228);
 			this.buttonDeleteA.Name = "buttonDeleteA";
 			this.buttonDeleteA.Size = new System.Drawing.Size(75, 39);
 			this.buttonDeleteA.TabIndex = 9;
@@ -138,7 +139,7 @@ namespace KyleDelacruzc969.Pages
 			// 
 			// buttonAddC
 			// 
-			this.buttonAddC.Location = new System.Drawing.Point(139, 453);
+			this.buttonAddC.Location = new System.Drawing.Point(244, 453);
 			this.buttonAddC.Name = "buttonAddC";
 			this.buttonAddC.Size = new System.Drawing.Size(75, 39);
 			this.buttonAddC.TabIndex = 10;
@@ -147,7 +148,7 @@ namespace KyleDelacruzc969.Pages
 			// 
 			// buttonModifyC
 			// 
-			this.buttonModifyC.Location = new System.Drawing.Point(244, 453);
+			this.buttonModifyC.Location = new System.Drawing.Point(335, 453);
 			this.buttonModifyC.Name = "buttonModifyC";
 			this.buttonModifyC.Size = new System.Drawing.Size(75, 39);
 			this.buttonModifyC.TabIndex = 11;
@@ -156,7 +157,7 @@ namespace KyleDelacruzc969.Pages
 			// 
 			// buttonDeleteC
 			// 
-			this.buttonDeleteC.Location = new System.Drawing.Point(346, 453);
+			this.buttonDeleteC.Location = new System.Drawing.Point(428, 453);
 			this.buttonDeleteC.Name = "buttonDeleteC";
 			this.buttonDeleteC.Size = new System.Drawing.Size(75, 39);
 			this.buttonDeleteC.TabIndex = 12;

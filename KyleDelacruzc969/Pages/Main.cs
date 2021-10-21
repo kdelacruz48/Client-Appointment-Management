@@ -16,5 +16,10 @@ namespace KyleDelacruzc969.Pages
 		{
 			InitializeComponent();
 		}
+
+		private void buttonLogOut_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
 	}
 }

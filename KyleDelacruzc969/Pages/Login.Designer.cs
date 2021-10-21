@@ -31,11 +31,11 @@ namespace KyleDelacruzc969.Pages
 		{
 			this.textBoxUserName = new System.Windows.Forms.TextBox();
 			this.labelUserName = new System.Windows.Forms.Label();
-			this.comboBoxLanguage = new System.Windows.Forms.ComboBox();
 			this.labelPassword = new System.Windows.Forms.Label();
 			this.textBoxPassword = new System.Windows.Forms.TextBox();
-			this.labelLanguage = new System.Windows.Forms.Label();
 			this.labelLogIn = new System.Windows.Forms.Label();
+			this.buttonLogin = new System.Windows.Forms.Button();
+			this.buttonExit = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// textBoxUserName
@@ -54,17 +54,6 @@ namespace KyleDelacruzc969.Pages
 			this.labelUserName.TabIndex = 1;
 			this.labelUserName.Text = "UserName";
 			// 
-			// comboBoxLanguage
-			// 
-			this.comboBoxLanguage.FormattingEnabled = true;
-			this.comboBoxLanguage.Items.AddRange(new object[] {
-            "Language 1",
-            "Language 2"});
-			this.comboBoxLanguage.Location = new System.Drawing.Point(271, 46);
-			this.comboBoxLanguage.Name = "comboBoxLanguage";
-			this.comboBoxLanguage.Size = new System.Drawing.Size(121, 21);
-			this.comboBoxLanguage.TabIndex = 2;
-			// 
 			// labelPassword
 			// 
 			this.labelPassword.AutoSize = true;
@@ -81,15 +70,6 @@ namespace KyleDelacruzc969.Pages
 			this.textBoxPassword.Size = new System.Drawing.Size(100, 20);
 			this.textBoxPassword.TabIndex = 4;
 			// 
-			// labelLanguage
-			// 
-			this.labelLanguage.AutoSize = true;
-			this.labelLanguage.Location = new System.Drawing.Point(308, 20);
-			this.labelLanguage.Name = "labelLanguage";
-			this.labelLanguage.Size = new System.Drawing.Size(55, 13);
-			this.labelLanguage.TabIndex = 5;
-			this.labelLanguage.Text = "Language";
-			// 
 			// labelLogIn
 			// 
 			this.labelLogIn.AutoSize = true;
@@ -100,20 +80,41 @@ namespace KyleDelacruzc969.Pages
 			this.labelLogIn.TabIndex = 6;
 			this.labelLogIn.Text = "Login";
 			// 
+			// buttonLogin
+			// 
+			this.buttonLogin.Location = new System.Drawing.Point(51, 188);
+			this.buttonLogin.Name = "buttonLogin";
+			this.buttonLogin.Size = new System.Drawing.Size(121, 35);
+			this.buttonLogin.TabIndex = 7;
+			this.buttonLogin.Text = "Login";
+			this.buttonLogin.UseVisualStyleBackColor = true;
+			this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
+			// 
+			// buttonExit
+			// 
+			this.buttonExit.Location = new System.Drawing.Point(206, 188);
+			this.buttonExit.Name = "buttonExit";
+			this.buttonExit.Size = new System.Drawing.Size(121, 35);
+			this.buttonExit.TabIndex = 8;
+			this.buttonExit.Text = "Exit";
+			this.buttonExit.UseVisualStyleBackColor = true;
+			this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+			// 
 			// Login
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(413, 235);
+			this.Controls.Add(this.buttonExit);
+			this.Controls.Add(this.buttonLogin);
 			this.Controls.Add(this.labelLogIn);
-			this.Controls.Add(this.labelLanguage);
 			this.Controls.Add(this.textBoxPassword);
 			this.Controls.Add(this.labelPassword);
-			this.Controls.Add(this.comboBoxLanguage);
 			this.Controls.Add(this.labelUserName);
 			this.Controls.Add(this.textBoxUserName);
 			this.Name = "Login";
 			this.Text = "Login";
+			this.Load += new System.EventHandler(this.Login_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -123,10 +124,10 @@ namespace KyleDelacruzc969.Pages
 
 		private System.Windows.Forms.TextBox textBoxUserName;
 		private System.Windows.Forms.Label labelUserName;
-		private System.Windows.Forms.ComboBox comboBoxLanguage;
 		private System.Windows.Forms.Label labelPassword;
 		private System.Windows.Forms.TextBox textBoxPassword;
-		private System.Windows.Forms.Label labelLanguage;
 		private System.Windows.Forms.Label labelLogIn;
+		private System.Windows.Forms.Button buttonLogin;
+		private System.Windows.Forms.Button buttonExit;
 	}
 }
