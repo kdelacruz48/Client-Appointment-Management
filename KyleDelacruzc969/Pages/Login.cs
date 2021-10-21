@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace KyleDelacruzc969.Pages
 {
@@ -16,7 +18,16 @@ namespace KyleDelacruzc969.Pages
 		public Login()
 		{
 			InitializeComponent();
-			
+			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			MySqlConnection con = new MySqlConnection(connectionString);
+
+			con.Open();
+			string sqlString = "SELECT * From User";
+			MySqlCommand cmd = new MySqlCommand(sqlString, con);    //this will not stay here, and delete dgv just for testing
+			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+			DataTable dt = new DataTable();
+			adp.Fill(dt);
+			dataGridView1.DataSource = dt;
 		}
 
 		public static bool IsUser = false;

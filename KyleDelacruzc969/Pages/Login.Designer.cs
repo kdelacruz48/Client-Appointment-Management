@@ -36,6 +36,8 @@ namespace KyleDelacruzc969.Pages
 			this.labelLogIn = new System.Windows.Forms.Label();
 			this.buttonLogin = new System.Windows.Forms.Button();
 			this.buttonExit = new System.Windows.Forms.Button();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// textBoxUserName
@@ -100,11 +102,20 @@ namespace KyleDelacruzc969.Pages
 			this.buttonExit.UseVisualStyleBackColor = true;
 			this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
 			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Location = new System.Drawing.Point(376, 31);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.Size = new System.Drawing.Size(390, 194);
+			this.dataGridView1.TabIndex = 9;
+			// 
 			// Login
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(413, 235);
+			this.ClientSize = new System.Drawing.Size(793, 235);
+			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.buttonExit);
 			this.Controls.Add(this.buttonLogin);
 			this.Controls.Add(this.labelLogIn);
@@ -115,6 +126,7 @@ namespace KyleDelacruzc969.Pages
 			this.Name = "Login";
 			this.Text = "Login";
 			this.Load += new System.EventHandler(this.Login_Load);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -129,5 +141,6 @@ namespace KyleDelacruzc969.Pages
 		private System.Windows.Forms.Label labelLogIn;
 		private System.Windows.Forms.Button buttonLogin;
 		private System.Windows.Forms.Button buttonExit;
+		private System.Windows.Forms.DataGridView dataGridView1;
 	}
 }
