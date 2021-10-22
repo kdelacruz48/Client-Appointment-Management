@@ -18,27 +18,71 @@ namespace KyleDelacruzc969.Pages
 		public Login()
 		{
 			InitializeComponent();
+			//string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			//MySqlConnection con = new MySqlConnection(connectionString);
+
+			//con.Open();
+			//string sqlString = "SELECT * From User";
+			//MySqlCommand cmd = new MySqlCommand(sqlString, con);    //this will not stay here, and delete dgv just for testing
+			//MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+			//DataTable dt = new DataTable();
+			//adp.Fill(dt);
+			//dataGridView1.DataSource = dt;
+		}
+
+		public static bool IsUser = false;
+		public static bool IsEnglish = true;
+		public static string userName;
+		public static string password;
+
+		private void buttonLogin_Click(object sender, EventArgs e)
+		{
+			
+		
+
+
+			List<string> list = new List<string>();
+			var region = RegionInfo.CurrentRegion.TwoLetterISORegionName;
+
 			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
 			MySqlConnection con = new MySqlConnection(connectionString);
 
 			con.Open();
 			string sqlString = "SELECT * From User";
-			MySqlCommand cmd = new MySqlCommand(sqlString, con);    //this will not stay here, and delete dgv just for testing
+			MySqlCommand cmd = new MySqlCommand(sqlString, con);    
 			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
 			DataTable dt = new DataTable();
 			adp.Fill(dt);
-			dataGridView1.DataSource = dt;
-		}
 
-		public static bool IsUser = false;
-		public static bool IsEnglish = true;
 
-		private void buttonLogin_Click(object sender, EventArgs e)
-		{
+			foreach (DataRow row in dt.Rows)
+			{
+				foreach (DataColumn column in dt.Columns)
+				{
+					var temp = row[column].ToString();
+					list.Add(temp);
 
-			var region = RegionInfo.CurrentRegion.TwoLetterISORegionName;
-			
-			if (IsUser == true)
+					
+				}
+			}
+
+			foreach (var l in list)
+			{
+				if (l == textBoxUserName.Text)
+				{
+					userName = l;
+				}
+
+				if (l == textBoxPassword.Text)
+				{
+					password = l;
+				}
+
+				
+			}
+
+
+			if (userName == textBoxUserName.Text && password == textBoxPassword.Text)
 			{
 
 				Main M1 = new Main();
