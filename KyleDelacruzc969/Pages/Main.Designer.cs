@@ -32,7 +32,7 @@ namespace KyleDelacruzc969.Pages
 			this.AppointmentsLabel = new System.Windows.Forms.Label();
 			this.CustomersLabel = new System.Windows.Forms.Label();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.dataGridView2 = new System.Windows.Forms.DataGridView();
+			this.dgvCustomers = new System.Windows.Forms.DataGridView();
 			this.buttonCalender = new System.Windows.Forms.Button();
 			this.buttonReports = new System.Windows.Forms.Button();
 			this.buttonLogOut = new System.Windows.Forms.Button();
@@ -43,7 +43,7 @@ namespace KyleDelacruzc969.Pages
 			this.buttonModifyC = new System.Windows.Forms.Button();
 			this.buttonDeleteC = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// AppointmentsLabel
@@ -74,37 +74,41 @@ namespace KyleDelacruzc969.Pages
 			this.dataGridView1.Size = new System.Drawing.Size(735, 190);
 			this.dataGridView1.TabIndex = 2;
 			// 
-			// dataGridView2
+			// dgvCustomers
 			// 
-			this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView2.Location = new System.Drawing.Point(23, 274);
-			this.dataGridView2.Name = "dataGridView2";
-			this.dataGridView2.Size = new System.Drawing.Size(480, 173);
-			this.dataGridView2.TabIndex = 3;
+			this.dgvCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvCustomers.Location = new System.Drawing.Point(23, 274);
+			this.dgvCustomers.MultiSelect = false;
+			this.dgvCustomers.Name = "dgvCustomers";
+			this.dgvCustomers.ReadOnly = true;
+			this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.dgvCustomers.Size = new System.Drawing.Size(599, 173);
+			this.dgvCustomers.TabIndex = 3;
 			// 
 			// buttonCalender
 			// 
-			this.buttonCalender.Location = new System.Drawing.Point(557, 274);
+			this.buttonCalender.Location = new System.Drawing.Point(628, 274);
 			this.buttonCalender.Name = "buttonCalender";
-			this.buttonCalender.Size = new System.Drawing.Size(201, 46);
+			this.buttonCalender.Size = new System.Drawing.Size(160, 46);
 			this.buttonCalender.TabIndex = 4;
 			this.buttonCalender.Text = "Calender";
 			this.buttonCalender.UseVisualStyleBackColor = true;
 			// 
 			// buttonReports
 			// 
-			this.buttonReports.Location = new System.Drawing.Point(557, 340);
+			this.buttonReports.Location = new System.Drawing.Point(628, 339);
 			this.buttonReports.Name = "buttonReports";
-			this.buttonReports.Size = new System.Drawing.Size(201, 46);
+			this.buttonReports.Size = new System.Drawing.Size(160, 46);
 			this.buttonReports.TabIndex = 5;
 			this.buttonReports.Text = "Reports";
 			this.buttonReports.UseVisualStyleBackColor = true;
 			// 
 			// buttonLogOut
 			// 
-			this.buttonLogOut.Location = new System.Drawing.Point(557, 401);
+			this.buttonLogOut.Location = new System.Drawing.Point(628, 401);
 			this.buttonLogOut.Name = "buttonLogOut";
-			this.buttonLogOut.Size = new System.Drawing.Size(201, 46);
+			this.buttonLogOut.Size = new System.Drawing.Size(160, 46);
 			this.buttonLogOut.TabIndex = 6;
 			this.buttonLogOut.Text = "Log Out";
 			this.buttonLogOut.UseVisualStyleBackColor = true;
@@ -178,14 +182,15 @@ namespace KyleDelacruzc969.Pages
 			this.Controls.Add(this.buttonLogOut);
 			this.Controls.Add(this.buttonReports);
 			this.Controls.Add(this.buttonCalender);
-			this.Controls.Add(this.dataGridView2);
+			this.Controls.Add(this.dgvCustomers);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.CustomersLabel);
 			this.Controls.Add(this.AppointmentsLabel);
 			this.Name = "Main";
 			this.Text = "Main";
+			this.Load += new System.EventHandler(this.Main_Load);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -196,7 +201,7 @@ namespace KyleDelacruzc969.Pages
 		private System.Windows.Forms.Label AppointmentsLabel;
 		private System.Windows.Forms.Label CustomersLabel;
 		private System.Windows.Forms.DataGridView dataGridView1;
-		private System.Windows.Forms.DataGridView dataGridView2;
+		private System.Windows.Forms.DataGridView dgvCustomers;
 		private System.Windows.Forms.Button buttonCalender;
 		private System.Windows.Forms.Button buttonReports;
 		private System.Windows.Forms.Button buttonLogOut;
