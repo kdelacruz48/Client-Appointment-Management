@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KyleDelacruzc969.classes;
 
 namespace KyleDelacruzc969.Pages
 {
@@ -15,6 +16,51 @@ namespace KyleDelacruzc969.Pages
 		public AddCustomer()
 		{
 			InitializeComponent();
+		}
+
+		string name1;
+		string address1;
+		string city1;
+		string country1;
+		string phone1;
+
+		private void buttonCancel_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+
+		private void buttonAdd_Click(object sender, EventArgs e)
+		{
+			name1 = textBoxName.Text;
+			address1 = textBoxAddress.Text;
+			city1 = comboBoxCity.Text;
+			country1 = comboBoxCountry.Text;
+			phone1 = textBoxPhone.Text;
+
+			Customer customer = new Customer(name1,address1,city1,country1,phone1);
+
+			Customer.AddCustomer(customer);
+			
+			Close();
+
+		}
+
+		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (comboBoxCity.Text == "New York" || comboBoxCity.Text == "Los Angeles")
+			{
+				comboBoxCountry.Text = "US";
+			}
+
+			else if (comboBoxCity.Text == "Toronto" || comboBoxCity.Text == "Vancouver")
+			{
+				comboBoxCountry.Text = "Canada";
+			}
+
+			else 
+			{
+				comboBoxCountry.Text = "Norway";
+			}
 		}
 	}
 }

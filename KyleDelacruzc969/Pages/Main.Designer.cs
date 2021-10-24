@@ -149,6 +149,7 @@ namespace KyleDelacruzc969.Pages
 			this.buttonAddC.TabIndex = 10;
 			this.buttonAddC.Text = "Add";
 			this.buttonAddC.UseVisualStyleBackColor = true;
+			this.buttonAddC.Click += new System.EventHandler(this.buttonAddC_Click);
 			// 
 			// buttonModifyC
 			// 
