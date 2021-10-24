@@ -87,7 +87,7 @@ namespace KyleDelacruzc969.Pages
 
 				Main M1 = new Main();
 				M1.Show();
-
+				
 
 			}
 

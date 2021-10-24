@@ -41,6 +41,7 @@ namespace KyleDelacruzc969.Pages
 		private void buttonLogOut_Click(object sender, EventArgs e)
 		{
 			this.Close();
+			
 		}
 
 		private void Main_Load(object sender, EventArgs e)

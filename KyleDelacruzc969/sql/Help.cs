@@ -23,7 +23,7 @@ namespace KyleDelacruzc969.sql
 			MySqlCommand cmd = new MySqlCommand(sqlString, con);
 			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
 			DataTable address = new DataTable();
-		
+
 			adp.Fill(address);
 			con.Close();
 
@@ -33,6 +33,7 @@ namespace KyleDelacruzc969.sql
 			}
 
 		}
+		
 		
 	}
 }
