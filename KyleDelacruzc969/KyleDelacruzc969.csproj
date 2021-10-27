@@ -153,9 +153,6 @@
     <EmbeddedResource Include="Pages\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\ModifyCustomer.resx">
-      <DependentUpon>ModifyCustomer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Reports.resx">
       <DependentUpon>Reports.cs</DependentUpon>
     </EmbeddedResource>

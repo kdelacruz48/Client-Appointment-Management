@@ -12,7 +12,7 @@ namespace KyleDelacruzc969.sql
 {
 	class Help
 	{
-		public static int addressIndex;
+
 		public static void getAddressID()
 		{
 			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
@@ -33,26 +33,7 @@ namespace KyleDelacruzc969.sql
 			}
 
 		}
-
-		public static void getAddress(string address1)
-		{
-			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
-			MySqlConnection con = new MySqlConnection(connectionString);
-
-			con.Open();
-			string sqlString = "SELECT * FROM address";
-			MySqlCommand cmd = new MySqlCommand(sqlString, con);
-			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
-			DataTable address = new DataTable();
-
-			adp.Fill(address);
-			con.Close();
-
-			DataRow[] rows = address.Select("address = '" + address1 + "'");
-			addressIndex = address.Rows.IndexOf(rows[0]);
-			addressIndex = addressIndex + 1;
-		}
-
-
+		
+		
 	}
 }

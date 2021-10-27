@@ -159,7 +159,6 @@ namespace KyleDelacruzc969.Pages
             this.buttonModifyC.TabIndex = 11;
             this.buttonModifyC.Text = "Modify";
             this.buttonModifyC.UseVisualStyleBackColor = true;
-            this.buttonModifyC.Click += new System.EventHandler(this.buttonModifyC_Click);
             // 
             // buttonDeleteC
             // 
