@@ -65,7 +65,7 @@ namespace KyleDelacruzc969.classes
 			con.Open();
 			
 			string sqlStringAddress = "INSERT INTO address  VALUES('" + Main.addressCount + "','" + address + "','" + "" + "','" + city + "','" + 11111 + "','" + phone + "','" + "2019-01-01 00:00:00" + "','" + null + "','" + "2019-01-01 00:00:00" + "','" + null + "' )";
-			string sqlString = "INSERT INTO customer  VALUES('" + Main.customerCount + "','" + customer.CustomerName + "','" + Main.addressCount + "','" + 1 + "','" + "2019-01-01 00:00:00" + "','" + null + "','" + "2019-01-01 00:00:00" + "','" + null + "' )";
+			string sqlString = "INSERT INTO customer  VALUES('" + Main.addressCount + "','" + customer.CustomerName + "','" + Main.addressCount + "','" + 1 + "','" + "2019-01-01 00:00:00" + "','" + null + "','" + "2019-01-01 00:00:00" + "','" + null + "' )";
 			MySqlCommand cmd = new MySqlCommand(sqlString, con);
 			MySqlCommand cmd1 = new MySqlCommand(sqlStringAddress, con);
 			cmd1.ExecuteNonQuery();
