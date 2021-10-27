@@ -119,5 +119,39 @@ namespace KyleDelacruzc969.Pages
 
 			
         }
+
+        private void buttonModifyC_Click(object sender, EventArgs e)
+        {
+			CustomerIndex = dgvCustomers.SelectedRows[0];
+
+
+			ModifyCustomer MC1 = new ModifyCustomer();
+
+			MC1.FormClosed += new FormClosedEventHandler(Form_Closed);
+
+			void Form_Closed(object sender1, EventArgs e1)
+			{
+				ModifyCustomer form = (ModifyCustomer)sender1;
+
+
+				string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+				MySqlConnection con = new MySqlConnection(connectionString);
+
+				con.Open();
+				string sqlString = "SELECT customerName, address, address2, city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
+
+
+				MySqlCommand cmd = new MySqlCommand(sqlString, con);
+				MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+				DataTable customer = new DataTable();
+				adp.Fill(customer);
+				dgvCustomers.DataSource = customer;
+
+			}
+
+			MC1.Show();
+
+            
+        }
     }
 }

@@ -62,5 +62,10 @@ namespace KyleDelacruzc969.Pages
 				comboBoxCountry.Text = "Norway";
 			}
 		}
-	}
+
+        private void labelAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
