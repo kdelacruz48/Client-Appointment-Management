@@ -38,6 +38,7 @@ namespace KyleDelacruzc969.Pages
 		public static int customerCount;
 		public static int addressCount = 1;
 		public static DataGridViewRow CustomerIndex;
+		public static DataGridViewRow IndexRow;
 
 		private void buttonLogOut_Click(object sender, EventArgs e)
 		{
@@ -82,20 +83,35 @@ namespace KyleDelacruzc969.Pages
         private void buttonDeleteC_Click(object sender, EventArgs e)
         {
 			var ID = dgvCustomers.SelectedRows[0].Index;
-			var forDelete = ID + 1;
+			var custName = dgvCustomers.SelectedRows[0].Cells[0].Value +string.Empty;
 
-			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			var deleteName = dgvCustomers.SelectedRows[0].Cells[0].Value;
+			var deleteAddress = dgvCustomers.SelectedRows[0].Cells[1].Value;
+
+
+			sql.Help.NameForDelete(custName);
+
+            string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
 			MySqlConnection con = new MySqlConnection(connectionString);
 
 			con.Open();
-
-			string sqlString1 = "DELETE FROM address WHERE (addressID = " + forDelete + ")";
-			string sqlString = "DELETE FROM customer WHERE (customerId = " + forDelete + ")";
+			
+			string sqlString1 = "DELETE FROM address WHERE (address = '" + deleteAddress + "')";
+			string sqlString = "DELETE FROM customer WHERE (customerName = '" + deleteName + "')";
+			
 			MySqlCommand cmd1 = new MySqlCommand(sqlString1, con);
 			MySqlCommand cmd = new MySqlCommand(sqlString, con);
 
-			cmd.ExecuteNonQuery();
-			cmd1.ExecuteNonQuery();
+			try
+			{
+				cmd.ExecuteNonQuery();
+				cmd1.ExecuteNonQuery();
+			}
+
+			catch
+            {
+				
+			}
 			con.Close();
 
 
@@ -123,7 +139,7 @@ namespace KyleDelacruzc969.Pages
         private void buttonModifyC_Click(object sender, EventArgs e)
         {
 			CustomerIndex = dgvCustomers.SelectedRows[0];
-
+			IndexRow = dgvCustomers.SelectedRows[0];
 
 			ModifyCustomer MC1 = new ModifyCustomer();
 

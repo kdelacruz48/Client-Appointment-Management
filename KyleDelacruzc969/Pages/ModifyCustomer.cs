@@ -47,6 +47,9 @@ namespace KyleDelacruzc969.Pages
         {
 			sql.Help.getAddress(address);
 
+			var modifyName = Main.IndexRow.Cells[0].Value;
+			var modifyAddress = Main.IndexRow.Cells[1].Value;
+
 			name = textBoxName.Text;
 			address = textBoxAddress.Text; 
 			phone = textBoxPhone.Text;
@@ -89,9 +92,9 @@ namespace KyleDelacruzc969.Pages
 			
 
 
-            string sqlStringAddress = "UPDATE  address  SET address ='" + address + "', cityID ='" + cityID + "',phone ='" + phone + "' WHERE (addressID = '" +sql.Help.addressIndex +"')" ;
+            string sqlStringAddress = "UPDATE  address  SET address ='" + address + "', cityID ='" + cityID + "',phone ='" + phone + "' WHERE (address = '" +modifyAddress +"')" ;
 
-			string sqlString = "UPDATE customer SET customerName ='" + name + "' WHERE (addressID = '" +sql.Help.addressIndex +"')" ;
+			string sqlString = "UPDATE customer SET customerName ='" + name + "' WHERE (customerName = '" +modifyName +"')" ;
             MySqlCommand cmd = new MySqlCommand(sqlString, con);
             MySqlCommand cmd1 = new MySqlCommand(sqlStringAddress, con);
             cmd1.ExecuteNonQuery();

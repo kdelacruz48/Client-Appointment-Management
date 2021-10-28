@@ -40,10 +40,12 @@ namespace KyleDelacruzc969.classes
 			var phone = customer.Phone;
 			int city;
 
-
-			Main.addressCount = 1;
-			Help.getAddressID();
-
+			
+			if (Main.addressCount == 1)
+			{
+				
+				Help.getAddressID();
+			}
 
 			if (cityID == "New York" || cityID == "Los Angeles")
 			{

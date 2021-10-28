@@ -204,7 +204,6 @@ namespace KyleDelacruzc969.Pages
 		private System.Windows.Forms.Label AppointmentsLabel;
 		private System.Windows.Forms.Label CustomersLabel;
 		private System.Windows.Forms.DataGridView dataGridView1;
-		private System.Windows.Forms.DataGridView dgvCustomers;
 		private System.Windows.Forms.Button buttonCalender;
 		private System.Windows.Forms.Button buttonReports;
 		private System.Windows.Forms.Button buttonLogOut;
@@ -214,5 +213,6 @@ namespace KyleDelacruzc969.Pages
 		private System.Windows.Forms.Button buttonAddC;
 		private System.Windows.Forms.Button buttonModifyC;
 		private System.Windows.Forms.Button buttonDeleteC;
-	}
+        public System.Windows.Forms.DataGridView dgvCustomers;
+    }
 }

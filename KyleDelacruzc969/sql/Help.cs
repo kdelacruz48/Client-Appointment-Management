@@ -13,6 +13,7 @@ namespace KyleDelacruzc969.sql
 	class Help
 	{
 		public static int addressIndex;
+		public static int customerIndex;
 		public static void getAddressID()
 		{
 			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
@@ -53,6 +54,29 @@ namespace KyleDelacruzc969.sql
 			addressIndex = addressIndex + 1;
 		}
 
+		public static void NameForDelete(string custName)
+		{
+			
 
+			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			MySqlConnection con = new MySqlConnection(connectionString);
+
+			con.Open();
+			string sqlString = "SELECT * FROM customer";
+			MySqlCommand cmd = new MySqlCommand(sqlString, con);
+			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+			DataTable address = new DataTable();
+
+			adp.Fill(address);
+			con.Close();
+
+
+			
+
+			DataRow[] rows = address.Select("customerName = '" + custName + "'");
+			customerIndex = address.Rows.IndexOf(rows[0]);
+			customerIndex = customerIndex + 1;
+			
+		}
 	}
 }
