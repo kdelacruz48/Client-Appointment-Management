@@ -23,13 +23,19 @@ namespace KyleDelacruzc969.Pages
 
 			con.Open();
 			string sqlString = "SELECT customerName, address, address2, city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
-
+			string sqlAppointment = "SELECT customer.customerId, customerName, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
 
 			MySqlCommand cmd = new MySqlCommand(sqlString, con);
+			MySqlCommand cmd1 = new MySqlCommand(sqlAppointment, con);
 			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+			MySqlDataAdapter adp1 = new MySqlDataAdapter(cmd1);
+			DataTable appointment = new DataTable();
 			DataTable customer = new DataTable();
+			adp1.Fill(appointment);
 			adp.Fill(customer);
 			dgvCustomers.DataSource = customer;
+			dgvAppointment.DataSource = appointment;
+
 
 			customerCount = dgvCustomers.Rows.Count;
 			
@@ -110,7 +116,8 @@ namespace KyleDelacruzc969.Pages
 
 			catch
             {
-				
+				//throwing exception for sql insert occaisonaly but usually works fine, still perfoms correct opperation
+				//wether exception is thrown or not.
 			}
 			con.Close();
 

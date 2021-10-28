@@ -37,12 +37,34 @@ namespace KyleDelacruzc969.Pages
 			country1 = comboBoxCountry.Text;
 			phone1 = textBoxPhone.Text;
 
-			Customer customer = new Customer(name1,address1,city1,country1,phone1);
+			bool check = Check.isNumber(phone1);
 
-			Customer.AddCustomer(customer);
-			
-			Close();
+			if (textBoxName.Text == string.Empty)
+			{
+				MessageBox.Show("Please enter a name");
+			}
 
+			else if (textBoxAddress.Text == string.Empty)
+			{
+				MessageBox.Show("Please enter an address");
+			}
+			else if (textBoxPhone.Text == string.Empty || check == false)
+			{
+				MessageBox.Show("Please enter a valid phone number");
+			}
+			else if(comboBoxCity.Text == string.Empty)
+            {
+				MessageBox.Show("please enter a city");
+            }
+
+			else
+			{
+				Customer customer = new Customer(name1, address1, city1, country1, phone1);
+
+				Customer.AddCustomer(customer);
+
+				Close();
+			}
 		}
 
 		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

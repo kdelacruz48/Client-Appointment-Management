@@ -31,7 +31,7 @@ namespace KyleDelacruzc969.Pages
 		{
             this.AppointmentsLabel = new System.Windows.Forms.Label();
             this.CustomersLabel = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvAppointment = new System.Windows.Forms.DataGridView();
             this.dgvCustomers = new System.Windows.Forms.DataGridView();
             this.buttonCalender = new System.Windows.Forms.Button();
             this.buttonReports = new System.Windows.Forms.Button();
@@ -42,7 +42,7 @@ namespace KyleDelacruzc969.Pages
             this.buttonAddC = new System.Windows.Forms.Button();
             this.buttonModifyC = new System.Windows.Forms.Button();
             this.buttonDeleteC = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAppointment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,13 +66,17 @@ namespace KyleDelacruzc969.Pages
             this.CustomersLabel.TabIndex = 1;
             this.CustomersLabel.Text = "Customers";
             // 
-            // dataGridView1
+            // dgvAppointment
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(23, 32);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(735, 190);
-            this.dataGridView1.TabIndex = 2;
+            this.dgvAppointment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAppointment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAppointment.Location = new System.Drawing.Point(23, 32);
+            this.dgvAppointment.MultiSelect = false;
+            this.dgvAppointment.Name = "dgvAppointment";
+            this.dgvAppointment.ReadOnly = true;
+            this.dgvAppointment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAppointment.Size = new System.Drawing.Size(735, 190);
+            this.dgvAppointment.TabIndex = 2;
             // 
             // dgvCustomers
             // 
@@ -186,13 +190,13 @@ namespace KyleDelacruzc969.Pages
             this.Controls.Add(this.buttonReports);
             this.Controls.Add(this.buttonCalender);
             this.Controls.Add(this.dgvCustomers);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvAppointment);
             this.Controls.Add(this.CustomersLabel);
             this.Controls.Add(this.AppointmentsLabel);
             this.Name = "Main";
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAppointment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -203,7 +207,6 @@ namespace KyleDelacruzc969.Pages
 
 		private System.Windows.Forms.Label AppointmentsLabel;
 		private System.Windows.Forms.Label CustomersLabel;
-		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.Button buttonCalender;
 		private System.Windows.Forms.Button buttonReports;
 		private System.Windows.Forms.Button buttonLogOut;
@@ -214,5 +217,6 @@ namespace KyleDelacruzc969.Pages
 		private System.Windows.Forms.Button buttonModifyC;
 		private System.Windows.Forms.Button buttonDeleteC;
         public System.Windows.Forms.DataGridView dgvCustomers;
+        public System.Windows.Forms.DataGridView dgvAppointment;
     }
 }

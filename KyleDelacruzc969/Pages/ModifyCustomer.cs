@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using KyleDelacruzc969.classes;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -80,27 +81,41 @@ namespace KyleDelacruzc969.Pages
 			}
 
 
+			bool check = Check.isNumber(phone);
+
+			if(textBoxName.Text == string.Empty)
+            {
+				MessageBox.Show("Please enter a name");
+            }
+
+			else if(textBoxAddress.Text == string.Empty)
+			{
+				MessageBox.Show("Please enter an address");
+			}
+			else if(textBoxPhone.Text == string.Empty || check == false)
+			{
+				MessageBox.Show("Please enter a valid phone number");
+			}
+
+			else
+			{
+				string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+				MySqlConnection con = new MySqlConnection(connectionString);
+
+				con.Open();
 
 
-			
-            MessageBox.Show(sql.Help.addressIndex + string.Empty);
 
-            string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
-            MySqlConnection con = new MySqlConnection(connectionString);
+				string sqlStringAddress = "UPDATE  address  SET address ='" + address + "', cityID ='" + cityID + "',phone ='" + phone + "' WHERE (address = '" + modifyAddress + "')";
 
-            con.Open();
-			
-
-
-            string sqlStringAddress = "UPDATE  address  SET address ='" + address + "', cityID ='" + cityID + "',phone ='" + phone + "' WHERE (address = '" +modifyAddress +"')" ;
-
-			string sqlString = "UPDATE customer SET customerName ='" + name + "' WHERE (customerName = '" +modifyName +"')" ;
-            MySqlCommand cmd = new MySqlCommand(sqlString, con);
-            MySqlCommand cmd1 = new MySqlCommand(sqlStringAddress, con);
-            cmd1.ExecuteNonQuery();
-            cmd.ExecuteNonQuery();
-            con.Close();
-			this.Close();
+				string sqlString = "UPDATE customer SET customerName ='" + name + "' WHERE (customerName = '" + modifyName + "')";
+				MySqlCommand cmd = new MySqlCommand(sqlString, con);
+				MySqlCommand cmd1 = new MySqlCommand(sqlStringAddress, con);
+				cmd1.ExecuteNonQuery();
+				cmd.ExecuteNonQuery();
+				con.Close();
+				this.Close();
+			}
         }
 
         private void comboBoxCountry_SelectedIndexChanged(object sender, EventArgs e)
