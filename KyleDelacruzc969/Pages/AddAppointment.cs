@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -15,6 +17,75 @@ namespace KyleDelacruzc969.Pages
 		public AddAppointment()
 		{
 			InitializeComponent();
+			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			MySqlConnection con = new MySqlConnection(connectionString);
+
+			con.Open();
+			string sqlString = "SELECT customerName FROM customer";
+			
+
+			MySqlCommand cmd = new MySqlCommand(sqlString, con);
+			MySqlDataAdapter adp2 = new MySqlDataAdapter(cmd);
+			DataTable customerName = new DataTable();
+			adp2.Fill(customerName);
+			con.Close();
+
+			
+
+			this.comboBoxName.DataSource = customerName;
+			this.comboBoxName.DisplayMember = "customerName";
+			this.comboBoxName.SelectedIndex = -1;
+			this.textBoxUserID.Text = Login.userID +string.Empty;
+
+
+			TimeSpan timeEnd = dateTimePicker2.Value.TimeOfDay;    // make appoint ment end 30 minutes after set, formatted in AM/PM
+			var t = timeEnd += TimeSpan.FromMinutes(30);
+			string format = t.ToString(@"hh\:mm\:ss");
+			string format1 = DateTime.Parse(format).ToString("hh:mm tt");
+			this.textBoxEnd.Text = format1; 
+
+
+
+		}
+
+        private void AddAppointment_Load(object sender, EventArgs e)
+        {
+			
+
+		}
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+			
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+			var name = comboBoxName.Text;
+			var type = comboBoxType.Text;
+			
+			var end = textBoxEnd.Text;
+			var date = dateTimePicker1.Value.Date;
+			TimeSpan time = dateTimePicker2.Value.TimeOfDay;
+			
+			
+				
+				var result = date + time;
+				//result.ToUniversalTime();
+				MessageBox.Show(time + string.Empty);
+				MessageBox.Show(result + string.Empty);
+
+			
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+			TimeSpan timeEnd = dateTimePicker2.Value.TimeOfDay;
+			var t = timeEnd += TimeSpan.FromMinutes(30);
+			string format = t.ToString(@"hh\:mm\:ss");
+			string format1 = DateTime.Parse(format).ToString("hh:mm tt");
+			this.textBoxEnd.Text = format1;
+
 		}
 	}
 }

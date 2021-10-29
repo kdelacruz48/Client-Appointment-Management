@@ -34,7 +34,7 @@ namespace KyleDelacruzc969.Pages
 		public static bool IsEnglish = true;
 		public static string userName;
 		public static string password;
-
+		public static int userID;
 		private void buttonLogin_Click(object sender, EventArgs e)
 		{
 			
@@ -84,10 +84,16 @@ namespace KyleDelacruzc969.Pages
 
 			if (userName == textBoxUserName.Text && password == textBoxPassword.Text)
 			{
-
+				
 				Main M1 = new Main();
 				M1.Show();
-				
+
+				if (textBoxUserName.Text == "test")
+				{
+					userID = 1;
+				}
+				else
+					userID = 2;
 
 			}
 

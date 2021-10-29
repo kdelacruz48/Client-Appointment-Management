@@ -122,7 +122,7 @@ namespace KyleDelacruzc969.Pages
 			con.Close();
 
 
-			string connectionString1 = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			
 			MySqlConnection con2 = new MySqlConnection(connectionString);
 
 			con.Open();
@@ -175,6 +175,12 @@ namespace KyleDelacruzc969.Pages
 			MC1.Show();
 
             
+        }
+
+        private void buttonAddA_Click(object sender, EventArgs e)
+        {
+			AddAppointment A1 = new AddAppointment();
+			A1.Show();
         }
     }
 }

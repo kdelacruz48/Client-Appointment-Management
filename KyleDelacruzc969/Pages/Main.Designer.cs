@@ -114,7 +114,7 @@ namespace KyleDelacruzc969.Pages
             this.buttonLogOut.Name = "buttonLogOut";
             this.buttonLogOut.Size = new System.Drawing.Size(160, 46);
             this.buttonLogOut.TabIndex = 6;
-            this.buttonLogOut.Text = "Log Out";
+            this.buttonLogOut.Text = "Switch User";
             this.buttonLogOut.UseVisualStyleBackColor = true;
             this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
             // 
@@ -126,6 +126,7 @@ namespace KyleDelacruzc969.Pages
             this.buttonAddA.TabIndex = 7;
             this.buttonAddA.Text = "Add";
             this.buttonAddA.UseVisualStyleBackColor = true;
+            this.buttonAddA.Click += new System.EventHandler(this.buttonAddA_Click);
             // 
             // buttonModifyA
             // 
