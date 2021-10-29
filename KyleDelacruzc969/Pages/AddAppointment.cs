@@ -62,26 +62,39 @@ namespace KyleDelacruzc969.Pages
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-			
-			var name = comboBoxName.Text;
-			var type = comboBoxType.Text;
-			DateTime start;
-			DateTime end;
+			if (comboBoxName.Text == "")
+			{
+				MessageBox.Show("Please select a name");
+			}
 
-			var date = dateTimePicker1.Value.Date;
-			TimeSpan time = dateTimePicker2.Value.TimeOfDay;	
-			var result = date + time;
-            result = result.ToUniversalTime();
+			else if (comboBoxType.Text == "")
+			{
+				MessageBox.Show("Please select an appointment type");
+			}
+
+			else
+			{
+				var name = comboBoxName.Text;
+				var type = comboBoxType.Text;
+				DateTime start;
+				DateTime end;
+
+				var date = dateTimePicker1.Value.Date;
+				TimeSpan time = dateTimePicker2.Value.TimeOfDay;
+				var result = date + time;
+				result = result.ToUniversalTime();
 
 
-			var custID  = sql.Help.getCustomerID(name);
-			start = result;
-			end = result.AddMinutes(30);
-			var userID = textBoxUserID.Text;
+				var custID = sql.Help.getCustomerID(name);
+				start = result;
+				end = result.AddMinutes(30);
+				var userID = textBoxUserID.Text;
 
 
-			Appointment appointment = new Appointment(custID,name,type,start,end,userID);
-			Appointment.addAppointment(appointment);
+				Appointment appointment = new Appointment(custID, name, type, start, end, userID);
+				Appointment.addAppointment(appointment);
+				this.Close();
+			}
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -93,5 +106,10 @@ namespace KyleDelacruzc969.Pages
 			this.textBoxEnd.Text = format1;
 
 		}
-	}
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+			this.Close();
+        }
+    }
 }

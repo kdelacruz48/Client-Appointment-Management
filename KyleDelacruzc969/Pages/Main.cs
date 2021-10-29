@@ -22,7 +22,7 @@ namespace KyleDelacruzc969.Pages
 			MySqlConnection con = new MySqlConnection(connectionString);
 
 			con.Open();
-			string sqlString = "SELECT customerName, address, address2, city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
+			string sqlString = "SELECT customerName, address, city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
 			string sqlAppointment = "SELECT customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
 
 			MySqlCommand cmd = new MySqlCommand(sqlString, con);
@@ -73,7 +73,7 @@ namespace KyleDelacruzc969.Pages
 				MySqlConnection con = new MySqlConnection(connectionString);
 
 				con.Open();
-				string sqlString = "SELECT customerName, address, address2, city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
+				string sqlString = "SELECT customerName, address,  city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
 
 
 				MySqlCommand cmd = new MySqlCommand(sqlString, con);
@@ -88,57 +88,61 @@ namespace KyleDelacruzc969.Pages
 
         private void buttonDeleteC_Click(object sender, EventArgs e)
         {
-			var ID = dgvCustomers.SelectedRows[0].Index;
-			var custName = dgvCustomers.SelectedRows[0].Cells[0].Value +string.Empty;
-
-			var deleteName = dgvCustomers.SelectedRows[0].Cells[0].Value;
-			var deleteAddress = dgvCustomers.SelectedRows[0].Cells[1].Value;
-
-
-			sql.Help.NameForDelete(custName);
-
-            string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
-			MySqlConnection con = new MySqlConnection(connectionString);
-
-			con.Open();
-			
-			string sqlString1 = "DELETE FROM address WHERE (address = '" + deleteAddress + "')";
-			string sqlString = "DELETE FROM customer WHERE (customerName = '" + deleteName + "')";
-			
-			MySqlCommand cmd1 = new MySqlCommand(sqlString1, con);
-			MySqlCommand cmd = new MySqlCommand(sqlString, con);
-
-			try
-			{
-				cmd.ExecuteNonQuery();
-				cmd1.ExecuteNonQuery();
-			}
-
-			catch
-            {
-				//throwing exception for sql insert occaisonaly but usually works fine, still perfoms correct opperation
-				//wether exception is thrown or not.
-			}
-			con.Close();
-
 
 			
-			MySqlConnection con2 = new MySqlConnection(connectionString);
 
-			con.Open();
-			string sqlString2 = "SELECT customerName, address, address2, city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
+			
+				var ID = dgvCustomers.SelectedRows[0].Index;
+				var custName = dgvCustomers.SelectedRows[0].Cells[0].Value + string.Empty;
 
-
-			MySqlCommand cmd2 = new MySqlCommand(sqlString2, con2);
-			MySqlDataAdapter adp2 = new MySqlDataAdapter(cmd2);
-			DataTable customer = new DataTable();
-			adp2.Fill(customer);
-			dgvCustomers.DataSource = customer;
+				var deleteName = dgvCustomers.SelectedRows[0].Cells[0].Value;
+				var deleteAddress = dgvCustomers.SelectedRows[0].Cells[1].Value;
 
 
+				sql.Help.NameForDelete(custName);
+
+				string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+				MySqlConnection con = new MySqlConnection(connectionString);
+
+				con.Open();
+
+				string sqlString1 = "DELETE FROM address WHERE (address = '" + deleteAddress + "')";
+				string sqlString = "DELETE FROM customer WHERE (customerName = '" + deleteName + "')";
+
+				MySqlCommand cmd1 = new MySqlCommand(sqlString1, con);
+				MySqlCommand cmd = new MySqlCommand(sqlString, con);
+
+				try
+				{
+					cmd.ExecuteNonQuery();
+					cmd1.ExecuteNonQuery();
+				}
+
+				catch
+				{
+					//throwing exception for sql insert occaisonaly but usually works fine, still perfoms correct opperation
+					//wether exception is thrown or not.
+				}
+				con.Close();
 
 
 
+				MySqlConnection con2 = new MySqlConnection(connectionString);
+
+				con.Open();
+				string sqlString2 = "SELECT customerName, address, city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
+
+
+				MySqlCommand cmd2 = new MySqlCommand(sqlString2, con2);
+				MySqlDataAdapter adp2 = new MySqlDataAdapter(cmd2);
+				DataTable customer = new DataTable();
+				adp2.Fill(customer);
+				dgvCustomers.DataSource = customer;
+
+
+
+
+			
 
 			
         }
@@ -161,7 +165,7 @@ namespace KyleDelacruzc969.Pages
 				MySqlConnection con = new MySqlConnection(connectionString);
 
 				con.Open();
-				string sqlString = "SELECT customerName, address, address2, city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
+				string sqlString = "SELECT customerName, address, city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
 
 
 				MySqlCommand cmd = new MySqlCommand(sqlString, con);
@@ -180,6 +184,28 @@ namespace KyleDelacruzc969.Pages
         private void buttonAddA_Click(object sender, EventArgs e)
         {
 			AddAppointment A1 = new AddAppointment();
+
+			A1.FormClosed += new FormClosedEventHandler(Form_Closed);
+
+			void Form_Closed(object sender1, EventArgs e1)
+			{
+				AddAppointment form = (AddAppointment)sender1;
+
+
+				string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+				MySqlConnection con = new MySqlConnection(connectionString);
+
+				con.Open();
+				string sqlAppointment = "SELECT customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
+
+
+				MySqlCommand cmd = new MySqlCommand(sqlAppointment, con);
+				MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+				DataTable appointment = new DataTable();
+				adp.Fill(appointment);
+				dgvAppointment.DataSource = appointment;
+
+			}
 			A1.Show();
         }
     }

@@ -28,6 +28,7 @@ namespace KyleDelacruzc969.classes
             this.start = start;
             this.end = end;
             this.userId = userId;
+            this.type = type;
 
         }
         public static void addAppointment(Appointment appointment)

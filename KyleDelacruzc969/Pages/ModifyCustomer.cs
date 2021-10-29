@@ -32,9 +32,9 @@ namespace KyleDelacruzc969.Pages
         {
 			name = Main.CustomerIndex.Cells[0].Value + string.Empty;
 			address = Main.CustomerIndex.Cells[1].Value+ string.Empty;
-			city  = Main.CustomerIndex.Cells[3].Value + string.Empty;
-			country = Main.CustomerIndex.Cells[4].Value + string.Empty;
-			phone = Main.CustomerIndex.Cells[5].Value +string.Empty;
+			city  = Main.CustomerIndex.Cells[2].Value + string.Empty;
+			country = Main.CustomerIndex.Cells[3].Value + string.Empty;
+			phone = Main.CustomerIndex.Cells[4].Value +string.Empty;
 
 			textBoxName.Text = name;
 			textBoxAddress.Text = address;
