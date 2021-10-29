@@ -23,7 +23,7 @@ namespace KyleDelacruzc969.Pages
 
 			con.Open();
 			string sqlString = "SELECT customerName, address, address2, city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
-			string sqlAppointment = "SELECT customer.customerId, customerName, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
+			string sqlAppointment = "SELECT customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
 
 			MySqlCommand cmd = new MySqlCommand(sqlString, con);
 			MySqlCommand cmd1 = new MySqlCommand(sqlAppointment, con);

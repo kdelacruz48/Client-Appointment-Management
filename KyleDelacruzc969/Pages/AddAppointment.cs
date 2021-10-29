@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using KyleDelacruzc969.classes;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,21 +62,26 @@ namespace KyleDelacruzc969.Pages
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+			
 			var name = comboBoxName.Text;
 			var type = comboBoxType.Text;
-			
-			var end = textBoxEnd.Text;
-			var date = dateTimePicker1.Value.Date;
-			TimeSpan time = dateTimePicker2.Value.TimeOfDay;
-			
-			
-				
-				var result = date + time;
-				//result.ToUniversalTime();
-				MessageBox.Show(time + string.Empty);
-				MessageBox.Show(result + string.Empty);
+			DateTime start;
+			DateTime end;
 
-			
+			var date = dateTimePicker1.Value.Date;
+			TimeSpan time = dateTimePicker2.Value.TimeOfDay;	
+			var result = date + time;
+            result = result.ToUniversalTime();
+
+
+			var custID  = sql.Help.getCustomerID(name);
+			start = result;
+			end = result.AddMinutes(30);
+			var userID = textBoxUserID.Text;
+
+
+			Appointment appointment = new Appointment(custID,name,type,start,end,userID);
+			Appointment.addAppointment(appointment);
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
