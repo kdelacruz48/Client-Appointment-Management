@@ -77,6 +77,7 @@ namespace KyleDelacruzc969.Pages
             this.dgvAppointment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAppointment.Size = new System.Drawing.Size(735, 190);
             this.dgvAppointment.TabIndex = 2;
+            this.dgvAppointment.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAppointment_CellContentClick);
             // 
             // dgvCustomers
             // 
@@ -136,6 +137,7 @@ namespace KyleDelacruzc969.Pages
             this.buttonModifyA.TabIndex = 8;
             this.buttonModifyA.Text = "Modify";
             this.buttonModifyA.UseVisualStyleBackColor = true;
+            this.buttonModifyA.Click += new System.EventHandler(this.buttonModifyA_Click);
             // 
             // buttonDeleteA
             // 

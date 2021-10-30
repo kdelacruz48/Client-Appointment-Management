@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using KyleDelacruzc969.classes;
 using KyleDelacruzc969.Pages;
 using MySql.Data.MySqlClient;
 
@@ -17,6 +19,7 @@ namespace KyleDelacruzc969.sql
 		public static int customerId;
 		public static int appointmentCount;
 		public static int nextAppointment;
+		public static DataGridViewRow modifyIndex;
 		public static void getAddressID()
 		{
 			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
@@ -136,5 +139,45 @@ namespace KyleDelacruzc969.sql
 			}
 			nextAppointment = appointmentCount + 1;
 		}
-	}
+
+
+        public static Appointment getAppointmentToModify()
+        {
+
+
+            string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+            MySqlConnection con = new MySqlConnection(connectionString);
+
+            con.Open();
+            string sqlString = "SELECT * FROM appointment";
+            MySqlCommand cmd = new MySqlCommand(sqlString, con);
+            MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+            DataTable appointment = new DataTable();
+
+            adp.Fill(appointment);
+            con.Close();
+
+
+			var tempID = modifyIndex.Cells[0].Value + string.Empty;
+
+            DataRow[] rows = appointment.Select("appointmentId = '" + tempID +"'");
+            DataRow row = rows[0];
+            var custId = row["customerId"].ToString();
+			var custName = row["customerName"].ToString();
+			var type = row["type"].ToString();
+			var start = row["start"].ToString();
+			var end = row["end"].ToString();
+			var userId = row["userId"].ToString();
+
+			int customerId;
+			int.TryParse(custId, out customerId);
+
+			var start1 = Convert.ToDateTime(start);
+			var end1 = Convert.ToDateTime(end);
+			Appointment update = new Appointment(customerId,custName,type,start1,end1,userId);
+
+			return update;
+
+		}
+    }
 }

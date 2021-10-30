@@ -190,6 +190,7 @@ namespace KyleDelacruzc969.Pages
             this.Controls.Add(this.labelAdd);
             this.Name = "AddCustomer";
             this.Text = "AddCustomer";
+            this.Load += new System.EventHandler(this.AddCustomer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

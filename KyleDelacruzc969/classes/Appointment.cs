@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using KyleDelacruzc969.Pages;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -48,6 +49,28 @@ namespace KyleDelacruzc969.classes
             MySqlCommand cmd = new MySqlCommand(sqlString, con);
             
             
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public static void modifyAppointment(Appointment update)
+        {
+            string dateTimeInsertS = update.start.ToString("yyyy-MM-dd HH:mm");
+            string dateTimeInserE = update.end.ToString("yyyy-MM-dd HH:mm");
+
+            var Id = Main.IndexRow.Cells[0].Value;
+
+            string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+            MySqlConnection con = new MySqlConnection(connectionString);
+
+            con.Open();
+
+
+            string sqlString = "UPDATE appointment set appointmentId ='" + Id + "',customerId ='" + update.customerId + "',userId ='" + update.userId +  "',type='" + update.type +  "',start='" + dateTimeInsertS + "',end='" + dateTimeInserE + "' WHERE (appointmentId = '" + Id + "')"; 
+            
+            MySqlCommand cmd = new MySqlCommand(sqlString, con);
+
+
             cmd.ExecuteNonQuery();
             con.Close();
         }

@@ -89,5 +89,10 @@ namespace KyleDelacruzc969.Pages
         {
 
         }
+
+        private void AddCustomer_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

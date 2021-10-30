@@ -23,7 +23,7 @@ namespace KyleDelacruzc969.Pages
 
 			con.Open();
 			string sqlString = "SELECT customerName, address, city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
-			string sqlAppointment = "SELECT customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
+			string sqlAppointment = "SELECT appointmentId, customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
 
 			MySqlCommand cmd = new MySqlCommand(sqlString, con);
 			MySqlCommand cmd1 = new MySqlCommand(sqlAppointment, con);
@@ -196,7 +196,7 @@ namespace KyleDelacruzc969.Pages
 				MySqlConnection con = new MySqlConnection(connectionString);
 
 				con.Open();
-				string sqlAppointment = "SELECT customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
+				string sqlAppointment = "SELECT appointmentId, customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
 
 
 				MySqlCommand cmd = new MySqlCommand(sqlAppointment, con);
@@ -227,24 +227,17 @@ namespace KyleDelacruzc969.Pages
 			
 			MySqlCommand cmd = new MySqlCommand(sqlString, con);
 
-			//try
-			//{
-				cmd.ExecuteNonQuery();
+		
+			cmd.ExecuteNonQuery();
 				
-			//}
-
-			//catch
-			//{
-			//	//throwing exception for sql insert occaisonaly but usually works fine, still perfoms correct opperation
-			//	//wether exception is thrown or not.
-			//}
+			
 			con.Close();
 
 
 			
 
 			con.Open();
-			string sqlString2 = "SELECT customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
+			string sqlString2 = "SELECT appointmentId, customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
 
 
 			MySqlCommand cmd2 = new MySqlCommand(sqlString2, con);
@@ -252,6 +245,40 @@ namespace KyleDelacruzc969.Pages
 			DataTable appointment = new DataTable();
 			adp2.Fill(appointment);
 			dgvAppointment.DataSource = appointment;
+		}
+
+        private void dgvAppointment_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+			sql.Help.modifyIndex = dgvAppointment.SelectedRows[0];
+        }
+
+		private void buttonModifyA_Click(object sender, EventArgs e)
+		{
+			IndexRow = dgvAppointment.SelectedRows[0];
+			ModifyAppointment MA1 = new ModifyAppointment();
+
+			MA1.FormClosed += new FormClosedEventHandler(Form_Closed);
+
+			void Form_Closed(object sender1, EventArgs e1)
+			{
+				ModifyAppointment form = (ModifyAppointment)sender1;
+
+
+				string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+				MySqlConnection con = new MySqlConnection(connectionString);
+
+				con.Open();
+				string sqlAppointment = "SELECT appointmentId, customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
+
+
+				MySqlCommand cmd = new MySqlCommand(sqlAppointment, con);
+				MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+				DataTable appointment = new DataTable();
+				adp.Fill(appointment);
+				dgvAppointment.DataSource = appointment;
+			}
+				MA1.Show();
+			
 		}
     }
 }
