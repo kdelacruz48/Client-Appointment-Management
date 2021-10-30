@@ -104,8 +104,10 @@ namespace KyleDelacruzc969.sql
 
 
 			DataRow[] rows = cust.Select("customerName = '" + custName + "'");
-			customerId = cust.Rows.IndexOf(rows[0]);
-			customerId++;
+			DataRow row = rows[0];
+			var custString = row["customerId"].ToString();
+			var customerId1 = Int32.TryParse(custString, out customerId);
+			
 			return customerId;
 		}
 

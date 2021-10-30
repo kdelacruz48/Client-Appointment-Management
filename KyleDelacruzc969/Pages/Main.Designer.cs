@@ -145,6 +145,7 @@ namespace KyleDelacruzc969.Pages
             this.buttonDeleteA.TabIndex = 9;
             this.buttonDeleteA.Text = "Delete";
             this.buttonDeleteA.UseVisualStyleBackColor = true;
+            this.buttonDeleteA.Click += new System.EventHandler(this.buttonDeleteA_Click);
             // 
             // buttonAddC
             // 

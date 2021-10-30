@@ -208,5 +208,50 @@ namespace KyleDelacruzc969.Pages
 			}
 			A1.Show();
         }
+
+        private void buttonDeleteA_Click(object sender, EventArgs e)
+        {
+			sql.Help.getAppointmentID();
+			var ID = sql.Help.appointmentCount;
+
+			
+
+			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			MySqlConnection con = new MySqlConnection(connectionString);
+
+			con.Open();
+
+			string sqlString = "DELETE FROM appointment WHERE (appointmentID = '" +ID + "')";
+			
+
+			
+			MySqlCommand cmd = new MySqlCommand(sqlString, con);
+
+			//try
+			//{
+				cmd.ExecuteNonQuery();
+				
+			//}
+
+			//catch
+			//{
+			//	//throwing exception for sql insert occaisonaly but usually works fine, still perfoms correct opperation
+			//	//wether exception is thrown or not.
+			//}
+			con.Close();
+
+
+			
+
+			con.Open();
+			string sqlString2 = "SELECT customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
+
+
+			MySqlCommand cmd2 = new MySqlCommand(sqlString2, con);
+			MySqlDataAdapter adp2 = new MySqlDataAdapter(cmd2);
+			DataTable appointment = new DataTable();
+			adp2.Fill(appointment);
+			dgvAppointment.DataSource = appointment;
+		}
     }
 }
