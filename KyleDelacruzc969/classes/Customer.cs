@@ -19,7 +19,7 @@ namespace KyleDelacruzc969.classes
 		public string Phone { get; set; }
 
 
-		
+
 
 
 
@@ -32,7 +32,7 @@ namespace KyleDelacruzc969.classes
 			this.Country = Country;
 			this.Phone = Phone;
 		}
-		
+
 		public static void AddCustomer(Customer customer)
 		{
 			var address = customer.Address;
@@ -40,10 +40,10 @@ namespace KyleDelacruzc969.classes
 			var phone = customer.Phone;
 			int city;
 
-			
+
 			if (Main.addressCount == 1)
 			{
-				
+
 				Help.getAddressID();
 			}
 
@@ -59,13 +59,13 @@ namespace KyleDelacruzc969.classes
 			{
 				city = 3;
 			}
-			
 
-			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;               
+
+			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
 			MySqlConnection con = new MySqlConnection(connectionString);
-			                                                               
+
 			con.Open();
-			
+
 			string sqlStringAddress = "INSERT INTO address  VALUES('" + Main.addressCount + "','" + address + "','" + "" + "','" + city + "','" + 11111 + "','" + phone + "','" + "2019-01-01 00:00:00" + "','" + null + "','" + "2019-01-01 00:00:00" + "','" + null + "' )";
 			string sqlString = "INSERT INTO customer  VALUES('" + Main.addressCount + "','" + customer.CustomerName + "','" + Main.addressCount + "','" + 1 + "','" + "2019-01-01 00:00:00" + "','" + null + "','" + "2019-01-01 00:00:00" + "','" + null + "' )";
 			MySqlCommand cmd = new MySqlCommand(sqlString, con);
@@ -73,11 +73,13 @@ namespace KyleDelacruzc969.classes
 			cmd1.ExecuteNonQuery();
 			cmd.ExecuteNonQuery();
 			con.Close();
-			
+
 			Main.customerCount++;
 			Main.addressCount++;
-			
+
 
 		}
+
+		
 	}
 }

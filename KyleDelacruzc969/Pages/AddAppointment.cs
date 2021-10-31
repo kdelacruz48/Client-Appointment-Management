@@ -62,6 +62,9 @@ namespace KyleDelacruzc969.Pages
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+			
+
+
 			if (comboBoxName.Text == "")
 			{
 				MessageBox.Show("Please select a name");
@@ -83,17 +86,31 @@ namespace KyleDelacruzc969.Pages
 				TimeSpan time = dateTimePicker2.Value.TimeOfDay;
 				var result = date + time;
 				result = result.ToUniversalTime();
+				var local = result.ToLocalTime();
 
+				TimeSpan s = DateTime.Parse("9:00 AM").TimeOfDay;
+				TimeSpan en = DateTime.Parse("5:00 PM").TimeOfDay;
 
-				var custID = sql.Help.getCustomerID(name);
-				start = result;
-				end = result.AddMinutes(30);
-				var userID = textBoxUserID.Text;
+				
 
+				if (local.TimeOfDay < s || local.TimeOfDay > en)
+				{
+					MessageBox.Show("outside buisness hours");
+				}
 
-				Appointment appointment = new Appointment(custID, name, type, start, end, userID);
-				Appointment.addAppointment(appointment);
-				this.Close();
+				else
+				{
+					var custID = sql.Help.getCustomerID(name);
+					start = result;
+					end = result.AddMinutes(30);
+					var userID1 = textBoxUserID.Text;
+					int userID;
+					Int32.TryParse(userID1, out userID);
+
+					Appointment appointment = new Appointment(custID, name, type, start, end, userID);
+					Appointment.addAppointment(appointment);
+					this.Close();
+				}
 			}
         }
 

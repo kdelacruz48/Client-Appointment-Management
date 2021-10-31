@@ -38,24 +38,24 @@ namespace KyleDelacruzc969.Pages
 			this.comboBoxName.DataSource = customerName;
 			this.comboBoxName.DisplayMember = "customerName";
 
-			comboBoxName.Text = Main.IndexRow.Cells[2].Value.ToString();
+			comboBoxName.Text = Main.IndexRow.Cells[1].Value.ToString();
 			
 
-			if (Main.IndexRow.Cells[3].Value + string.Empty == "Consultation")
+			if (Main.IndexRow.Cells[2].Value + string.Empty == "Consultation")
 				comboBoxType.SelectedIndex = 0;
 
-			else if (Main.IndexRow.Cells[3].Value + string.Empty == "Review")
+			else if (Main.IndexRow.Cells[2].Value + string.Empty == "Review")
 				comboBoxType.SelectedIndex = 1;
 
-			else if (Main.IndexRow.Cells[3].Value + string.Empty == "Final")
+			else if (Main.IndexRow.Cells[2].Value + string.Empty == "Final")
 				comboBoxType.SelectedIndex = 2;
 
 			else
 				comboBoxType.SelectedIndex = -1;
 
 
-			dateTimePicker1.Value = (DateTime)Main.IndexRow.Cells[4].Value;
-			dateTimePicker2.Value = (DateTime)Main.IndexRow.Cells[4].Value;
+			dateTimePicker1.Value = (DateTime)Main.IndexRow.Cells[3].Value;
+			dateTimePicker2.Value = (DateTime)Main.IndexRow.Cells[3].Value;
 
 
 
@@ -66,7 +66,7 @@ namespace KyleDelacruzc969.Pages
 			this.textBoxEnd.Text = format1;
 
 
-			textBoxUserID.Text = Main.IndexRow.Cells[6].Value + string.Empty;
+			textBoxUserID.Text = Main.IndexRow.Cells[5].Value + string.Empty;
 
 
 		}
@@ -113,17 +113,34 @@ namespace KyleDelacruzc969.Pages
 				TimeSpan time = dateTimePicker2.Value.TimeOfDay;
 				var result = date + time;
 				result = result.ToUniversalTime();
+				var local = result.ToLocalTime();
+
+				TimeSpan s = DateTime.Parse("9:00 AM").TimeOfDay;
+				TimeSpan en = DateTime.Parse("5:00 PM").TimeOfDay;
 
 
-				var custID = sql.Help.getCustomerID(name);
-				start = result;
-				end = result.AddMinutes(30);
-				var userID = textBoxUserID.Text;
+
+				if (local.TimeOfDay < s || local.TimeOfDay > en)
+				{
+					MessageBox.Show("outside buisness hours");
+				}
+
+				else
+				{
 
 
-				Appointment appointment = new Appointment(custID, name, type, start, end, userID);
-				Appointment.modifyAppointment(appointment);
-				this.Close();
+					var custID = sql.Help.getCustomerID(name);
+					start = result;
+					end = result.AddMinutes(30);
+					var userID1 = textBoxUserID.Text;
+					int userID;
+					Int32.TryParse(userID1, out userID);
+
+
+					Appointment appointment = new Appointment(custID, name, type, start, end, userID);
+					Appointment.modifyAppointment(appointment);
+					this.Close();
+				}
 			}
 		}
 

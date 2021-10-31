@@ -33,7 +33,7 @@ namespace KyleDelacruzc969.Pages
             this.CustomersLabel = new System.Windows.Forms.Label();
             this.dgvAppointment = new System.Windows.Forms.DataGridView();
             this.dgvCustomers = new System.Windows.Forms.DataGridView();
-            this.buttonCalender = new System.Windows.Forms.Button();
+            this.buttonMonth = new System.Windows.Forms.Button();
             this.buttonReports = new System.Windows.Forms.Button();
             this.buttonLogOut = new System.Windows.Forms.Button();
             this.buttonAddA = new System.Windows.Forms.Button();
@@ -42,8 +42,12 @@ namespace KyleDelacruzc969.Pages
             this.buttonAddC = new System.Windows.Forms.Button();
             this.buttonModifyC = new System.Windows.Forms.Button();
             this.buttonDeleteC = new System.Windows.Forms.Button();
+            this.buttonAll = new System.Windows.Forms.Button();
+            this.buttonWeekly = new System.Windows.Forms.Button();
+            this.dgvLink = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLink)).BeginInit();
             this.SuspendLayout();
             // 
             // AppointmentsLabel
@@ -52,9 +56,9 @@ namespace KyleDelacruzc969.Pages
             this.AppointmentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AppointmentsLabel.Location = new System.Drawing.Point(30, 9);
             this.AppointmentsLabel.Name = "AppointmentsLabel";
-            this.AppointmentsLabel.Size = new System.Drawing.Size(120, 20);
+            this.AppointmentsLabel.Size = new System.Drawing.Size(188, 20);
             this.AppointmentsLabel.TabIndex = 0;
-            this.AppointmentsLabel.Text = "Appointments";
+            this.AppointmentsLabel.Text = "Appointment Calender";
             // 
             // CustomersLabel
             // 
@@ -70,12 +74,13 @@ namespace KyleDelacruzc969.Pages
             // 
             this.dgvAppointment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAppointment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAppointment.Location = new System.Drawing.Point(23, 32);
+            this.dgvAppointment.Location = new System.Drawing.Point(23, 42);
             this.dgvAppointment.MultiSelect = false;
             this.dgvAppointment.Name = "dgvAppointment";
             this.dgvAppointment.ReadOnly = true;
+            this.dgvAppointment.RowHeadersVisible = false;
             this.dgvAppointment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAppointment.Size = new System.Drawing.Size(735, 190);
+            this.dgvAppointment.Size = new System.Drawing.Size(892, 180);
             this.dgvAppointment.TabIndex = 2;
             this.dgvAppointment.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAppointment_CellContentClick);
             // 
@@ -83,37 +88,39 @@ namespace KyleDelacruzc969.Pages
             // 
             this.dgvCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCustomers.Location = new System.Drawing.Point(23, 274);
+            this.dgvCustomers.Location = new System.Drawing.Point(23, 273);
             this.dgvCustomers.MultiSelect = false;
             this.dgvCustomers.Name = "dgvCustomers";
             this.dgvCustomers.ReadOnly = true;
+            this.dgvCustomers.RowHeadersVisible = false;
             this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCustomers.Size = new System.Drawing.Size(599, 173);
+            this.dgvCustomers.Size = new System.Drawing.Size(681, 173);
             this.dgvCustomers.TabIndex = 3;
             // 
-            // buttonCalender
+            // buttonMonth
             // 
-            this.buttonCalender.Location = new System.Drawing.Point(628, 274);
-            this.buttonCalender.Name = "buttonCalender";
-            this.buttonCalender.Size = new System.Drawing.Size(160, 46);
-            this.buttonCalender.TabIndex = 4;
-            this.buttonCalender.Text = "Calender";
-            this.buttonCalender.UseVisualStyleBackColor = true;
+            this.buttonMonth.Location = new System.Drawing.Point(791, 5);
+            this.buttonMonth.Name = "buttonMonth";
+            this.buttonMonth.Size = new System.Drawing.Size(103, 31);
+            this.buttonMonth.TabIndex = 4;
+            this.buttonMonth.Text = "Month";
+            this.buttonMonth.UseVisualStyleBackColor = true;
+            this.buttonMonth.Click += new System.EventHandler(this.buttonMonth_Click);
             // 
             // buttonReports
             // 
-            this.buttonReports.Location = new System.Drawing.Point(628, 339);
+            this.buttonReports.Location = new System.Drawing.Point(734, 228);
             this.buttonReports.Name = "buttonReports";
-            this.buttonReports.Size = new System.Drawing.Size(160, 46);
+            this.buttonReports.Size = new System.Drawing.Size(160, 39);
             this.buttonReports.TabIndex = 5;
             this.buttonReports.Text = "Reports";
             this.buttonReports.UseVisualStyleBackColor = true;
             // 
             // buttonLogOut
             // 
-            this.buttonLogOut.Location = new System.Drawing.Point(628, 401);
+            this.buttonLogOut.Location = new System.Drawing.Point(734, 453);
             this.buttonLogOut.Name = "buttonLogOut";
-            this.buttonLogOut.Size = new System.Drawing.Size(160, 46);
+            this.buttonLogOut.Size = new System.Drawing.Size(160, 40);
             this.buttonLogOut.TabIndex = 6;
             this.buttonLogOut.Text = "Switch User";
             this.buttonLogOut.UseVisualStyleBackColor = true;
@@ -179,11 +186,46 @@ namespace KyleDelacruzc969.Pages
             this.buttonDeleteC.UseVisualStyleBackColor = true;
             this.buttonDeleteC.Click += new System.EventHandler(this.buttonDeleteC_Click);
             // 
+            // buttonAll
+            // 
+            this.buttonAll.Location = new System.Drawing.Point(573, 5);
+            this.buttonAll.Name = "buttonAll";
+            this.buttonAll.Size = new System.Drawing.Size(103, 31);
+            this.buttonAll.TabIndex = 13;
+            this.buttonAll.Text = "All";
+            this.buttonAll.UseVisualStyleBackColor = true;
+            this.buttonAll.Click += new System.EventHandler(this.buttonAll_Click);
+            // 
+            // buttonWeekly
+            // 
+            this.buttonWeekly.Location = new System.Drawing.Point(682, 5);
+            this.buttonWeekly.Name = "buttonWeekly";
+            this.buttonWeekly.Size = new System.Drawing.Size(103, 31);
+            this.buttonWeekly.TabIndex = 14;
+            this.buttonWeekly.Text = "Week";
+            this.buttonWeekly.UseVisualStyleBackColor = true;
+            this.buttonWeekly.Click += new System.EventHandler(this.buttonWeekly_Click);
+            // 
+            // dgvLink
+            // 
+            this.dgvLink.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvLink.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLink.Location = new System.Drawing.Point(710, 273);
+            this.dgvLink.MultiSelect = false;
+            this.dgvLink.Name = "dgvLink";
+            this.dgvLink.ReadOnly = true;
+            this.dgvLink.RowHeadersVisible = false;
+            this.dgvLink.Size = new System.Drawing.Size(205, 174);
+            this.dgvLink.TabIndex = 15;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 498);
+            this.ClientSize = new System.Drawing.Size(927, 507);
+            this.Controls.Add(this.dgvLink);
+            this.Controls.Add(this.buttonWeekly);
+            this.Controls.Add(this.buttonAll);
             this.Controls.Add(this.buttonDeleteC);
             this.Controls.Add(this.buttonModifyC);
             this.Controls.Add(this.buttonAddC);
@@ -192,7 +234,7 @@ namespace KyleDelacruzc969.Pages
             this.Controls.Add(this.buttonAddA);
             this.Controls.Add(this.buttonLogOut);
             this.Controls.Add(this.buttonReports);
-            this.Controls.Add(this.buttonCalender);
+            this.Controls.Add(this.buttonMonth);
             this.Controls.Add(this.dgvCustomers);
             this.Controls.Add(this.dgvAppointment);
             this.Controls.Add(this.CustomersLabel);
@@ -202,6 +244,7 @@ namespace KyleDelacruzc969.Pages
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLink)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,7 +254,7 @@ namespace KyleDelacruzc969.Pages
 
 		private System.Windows.Forms.Label AppointmentsLabel;
 		private System.Windows.Forms.Label CustomersLabel;
-		private System.Windows.Forms.Button buttonCalender;
+		private System.Windows.Forms.Button buttonMonth;
 		private System.Windows.Forms.Button buttonReports;
 		private System.Windows.Forms.Button buttonLogOut;
 		private System.Windows.Forms.Button buttonAddA;
@@ -222,5 +265,8 @@ namespace KyleDelacruzc969.Pages
 		private System.Windows.Forms.Button buttonDeleteC;
         public System.Windows.Forms.DataGridView dgvCustomers;
         public System.Windows.Forms.DataGridView dgvAppointment;
+        private System.Windows.Forms.Button buttonAll;
+        private System.Windows.Forms.Button buttonWeekly;
+        private System.Windows.Forms.DataGridView dgvLink;
     }
 }

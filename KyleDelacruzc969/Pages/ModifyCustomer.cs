@@ -22,6 +22,7 @@ namespace KyleDelacruzc969.Pages
 
 		}
 		public string name;
+		public string nameCheck;
 		public string address;
 		public string phone;
 		public string city;
@@ -42,6 +43,7 @@ namespace KyleDelacruzc969.Pages
 			comboBoxCity.Text = city;
 			comboBoxCountry.Text = country;
 
+			nameCheck = name;
 		}
 
         private void buttonAdd_Click(object sender, EventArgs e) //Modify button
@@ -82,6 +84,8 @@ namespace KyleDelacruzc969.Pages
 
 
 			bool check = Check.isNumber(phone);
+			bool isCust = sql.Help.isCustomer(textBoxName.Text);
+			
 
 			if(textBoxName.Text == string.Empty)
             {
@@ -96,7 +100,10 @@ namespace KyleDelacruzc969.Pages
 			{
 				MessageBox.Show("Please enter a valid phone number");
 			}
-
+			else if(nameCheck != textBoxName.Text && isCust == true)
+            {
+				MessageBox.Show("customer already exists");
+            }
 			else
 			{
 				string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;

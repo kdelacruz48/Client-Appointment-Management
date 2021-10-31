@@ -11,18 +11,18 @@ namespace KyleDelacruzc969.classes
 {
     class Appointment
     {
-
+        public int appointmentId { get; set; }
         public string customerName { get; set; }
 
         public string type { get; set; }
         public DateTime start { get; set; }
         public DateTime end { get; set; }
-        public string userId { get; set; }
+        public int userId { get; set; }
 
         public int customerId { get; set; }
      
     
-        public Appointment(int customerId, string customerName, string type, DateTime start, DateTime end, string userId )
+        public Appointment(int customerId, string customerName, string type, DateTime start, DateTime end, int userId )
         {
             this.customerId = customerId;
             this.customerName = customerName;
@@ -31,6 +31,17 @@ namespace KyleDelacruzc969.classes
             this.userId = userId;
             this.type = type;
 
+        }
+
+        public Appointment(int appointmentId, int customerId, string customerName, string type, DateTime start, DateTime end, int userId)
+        {
+            this.appointmentId = appointmentId;
+            this.customerId = customerId;
+            this.customerName = customerName;
+            this.start = start;
+            this.end = end;
+            this.userId = userId;
+            this.type = type;
         }
         public static void addAppointment(Appointment appointment)
         {

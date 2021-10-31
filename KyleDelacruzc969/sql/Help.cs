@@ -110,24 +110,24 @@ namespace KyleDelacruzc969.sql
 			DataRow row = rows[0];
 			var custString = row["customerId"].ToString();
 			var customerId1 = Int32.TryParse(custString, out customerId);
-			
+
 			return customerId;
 		}
 
 		public static void getAppointmentID()
 		{
 
-		string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
-		MySqlConnection con = new MySqlConnection(connectionString);
+			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			MySqlConnection con = new MySqlConnection(connectionString);
 
-		con.Open();
+			con.Open();
 			string sqlString = "SELECT * FROM appointment";
-		MySqlCommand cmd = new MySqlCommand(sqlString, con);
-		MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
-		DataTable appointment = new DataTable();
+			MySqlCommand cmd = new MySqlCommand(sqlString, con);
+			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+			DataTable appointment = new DataTable();
 
-		adp.Fill(appointment);
-		con.Close();
+			adp.Fill(appointment);
+			con.Close();
 
 			appointmentCount = 0;
 			nextAppointment = 0;
@@ -141,43 +141,81 @@ namespace KyleDelacruzc969.sql
 		}
 
 
-        public static Appointment getAppointmentToModify()
-        {
+		public static Appointment getAppointmentToModify()
+		{
 
 
-            string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
-            MySqlConnection con = new MySqlConnection(connectionString);
+			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			MySqlConnection con = new MySqlConnection(connectionString);
 
-            con.Open();
-            string sqlString = "SELECT * FROM appointment";
-            MySqlCommand cmd = new MySqlCommand(sqlString, con);
-            MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
-            DataTable appointment = new DataTable();
+			con.Open();
+			string sqlString = "SELECT * FROM appointment";
+			MySqlCommand cmd = new MySqlCommand(sqlString, con);
+			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+			DataTable appointment = new DataTable();
 
-            adp.Fill(appointment);
-            con.Close();
+			adp.Fill(appointment);
+			con.Close();
 
 
 			var tempID = modifyIndex.Cells[0].Value + string.Empty;
 
-            DataRow[] rows = appointment.Select("appointmentId = '" + tempID +"'");
-            DataRow row = rows[0];
-            var custId = row["customerId"].ToString();
+			DataRow[] rows = appointment.Select("appointmentId = '" + tempID + "'");
+			DataRow row = rows[0];
+			var custId = row["customerId"].ToString();
 			var custName = row["customerName"].ToString();
 			var type = row["type"].ToString();
 			var start = row["start"].ToString();
 			var end = row["end"].ToString();
-			var userId = row["userId"].ToString();
+			var userId1 = row["userId"].ToString();
+			int userId;
+			Int32.TryParse(userId1, out userId);
 
 			int customerId;
 			int.TryParse(custId, out customerId);
 
 			var start1 = Convert.ToDateTime(start);
 			var end1 = Convert.ToDateTime(end);
-			Appointment update = new Appointment(customerId,custName,type,start1,end1,userId);
+			Appointment update = new Appointment(customerId, custName, type, start1, end1, userId);
 
 			return update;
 
 		}
+
+		public static bool isCustomer(string custName)
+		{
+			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			MySqlConnection con = new MySqlConnection(connectionString);
+
+			con.Open();
+			string sqlString = "SELECT * FROM customer WHERE customerName = '"+custName+"'";
+			MySqlCommand cmd = new MySqlCommand(sqlString, con);
+			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+			DataTable cust = new DataTable();
+
+			adp.Fill(cust);
+			con.Close();
+
+
+
+            try
+            {
+				DataRow[] rows = cust.Select("customerName = '" + custName + "'");
+				DataRow row = rows[0];
+				if (row == null)
+				{
+					return false;
+				}
+			}
+            catch (Exception)
+            {
+
+				return false;
+            }
+			
+
+			return true;
+		}
+		
     }
 }

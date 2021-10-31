@@ -38,6 +38,7 @@ namespace KyleDelacruzc969.Pages
 			phone1 = textBoxPhone.Text;
 
 			bool check = Check.isNumber(phone1);
+			bool isCust = sql.Help.isCustomer(name1);
 
 			if (textBoxName.Text == string.Empty)
 			{
@@ -57,6 +58,11 @@ namespace KyleDelacruzc969.Pages
 				MessageBox.Show("please enter a city");
             }
 
+			
+			else if (isCust == true)
+			{
+				MessageBox.Show("cannot create duplicate customer");
+			}
 			else
 			{
 				Customer customer = new Customer(name1, address1, city1, country1, phone1);
