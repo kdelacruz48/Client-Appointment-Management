@@ -34,39 +34,43 @@ namespace KyleDelacruzc969.Pages
 			con.Close();
 
 
+           
+				this.comboBoxName.DataSource = customerName;
+				this.comboBoxName.DisplayMember = "customerName";
 
-			this.comboBoxName.DataSource = customerName;
-			this.comboBoxName.DisplayMember = "customerName";
+				comboBoxName.Text = Main.IndexRow.Cells[1].Value.ToString();
 
-			comboBoxName.Text = Main.IndexRow.Cells[1].Value.ToString();
+
+				if (Main.IndexRow.Cells[2].Value + string.Empty == "Consultation")
+					comboBoxType.SelectedIndex = 0;
+
+				else if (Main.IndexRow.Cells[2].Value + string.Empty == "Review")
+					comboBoxType.SelectedIndex = 1;
+
+				else if (Main.IndexRow.Cells[2].Value + string.Empty == "Final")
+					comboBoxType.SelectedIndex = 2;
+
+				else
+					comboBoxType.SelectedIndex = -1;
+
+
+				dateTimePicker1.Value = (DateTime)Main.IndexRow.Cells[3].Value;
+				dateTimePicker2.Value = (DateTime)Main.IndexRow.Cells[3].Value;
+
+
+
+				TimeSpan timeEnd = dateTimePicker2.Value.TimeOfDay;    // make appoint ment end 30 minutes after set, formatted in AM/PM
+				var t = timeEnd += TimeSpan.FromMinutes(30);
+				string format = t.ToString(@"hh\:mm\:ss");
+				string format1 = DateTime.Parse(format).ToString("hh:mm tt");
+				this.textBoxEnd.Text = format1;
+
+
+				textBoxUserID.Text = Main.IndexRow.Cells[5].Value + string.Empty;
 			
-
-			if (Main.IndexRow.Cells[2].Value + string.Empty == "Consultation")
-				comboBoxType.SelectedIndex = 0;
-
-			else if (Main.IndexRow.Cells[2].Value + string.Empty == "Review")
-				comboBoxType.SelectedIndex = 1;
-
-			else if (Main.IndexRow.Cells[2].Value + string.Empty == "Final")
-				comboBoxType.SelectedIndex = 2;
-
-			else
-				comboBoxType.SelectedIndex = -1;
-
-
-			dateTimePicker1.Value = (DateTime)Main.IndexRow.Cells[3].Value;
-			dateTimePicker2.Value = (DateTime)Main.IndexRow.Cells[3].Value;
-
-
-
-			TimeSpan timeEnd = dateTimePicker2.Value.TimeOfDay;    // make appoint ment end 30 minutes after set, formatted in AM/PM
-			var t = timeEnd += TimeSpan.FromMinutes(30);
-			string format = t.ToString(@"hh\:mm\:ss");
-			string format1 = DateTime.Parse(format).ToString("hh:mm tt");
-			this.textBoxEnd.Text = format1;
-
-
-			textBoxUserID.Text = Main.IndexRow.Cells[5].Value + string.Empty;
+            
+			
+			
 
 
 		}

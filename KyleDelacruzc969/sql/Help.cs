@@ -243,7 +243,7 @@ namespace KyleDelacruzc969.sql
 				var end1 = item["end"].ToString();
 				DateTime endAppointment = DateTime.Parse(end1);
 
-				if ( start > startAppointment && start < endAppointment || start < startAppointment && end > startAppointment)
+				if ( start > startAppointment && start < endAppointment || start < startAppointment && end > startAppointment)  // check to see if appointment overlapps
 				{
 					
 						return true;
@@ -253,6 +253,56 @@ namespace KyleDelacruzc969.sql
 			return false;
 
 
+		}
+
+
+		public static bool hasAppIn15(int userID)
+        {
+			{
+
+
+
+				string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+				MySqlConnection con = new MySqlConnection(connectionString);
+
+				con.Open();
+				string sqlString = "SELECT * FROM appointment";
+				MySqlCommand cmd = new MySqlCommand(sqlString, con);
+				MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+				DataTable appointment = new DataTable();
+
+				adp.Fill(appointment);
+				con.Close();
+
+
+				foreach (DataRow item in appointment.Rows)
+				{
+					var start1 = item["start"].ToString();
+					DateTime startAppointment1 = DateTime.Parse(start1);
+					DateTime startAppointment = startAppointment1.ToLocalTime();
+
+					var end1 = item["end"].ToString();
+					DateTime endAppointment = DateTime.Parse(end1);
+
+					var IdCheck = item["userId"].ToString();
+					int IdCheck1 = int.Parse(IdCheck);
+
+
+					var now = DateTime.Now;
+					now = now.ToLocalTime();
+					var plus = now.AddMinutes(15);
+
+					if (now < startAppointment && plus > startAppointment && IdCheck1 == userID )  
+					{
+
+						return true;
+					}
+				}
+
+				return false;
+
+
+			}
 		}
 
 		

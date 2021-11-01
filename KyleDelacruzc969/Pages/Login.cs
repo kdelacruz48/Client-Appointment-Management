@@ -35,6 +35,7 @@ namespace KyleDelacruzc969.Pages
 		public static string userName;
 		public static string password;
 		public static int userID;
+		public bool hasAppointment;
 		private void buttonLogin_Click(object sender, EventArgs e)
 		{
 			
@@ -86,14 +87,33 @@ namespace KyleDelacruzc969.Pages
 			{
 				
 				Main M1 = new Main();
-				M1.Show();
+				
 
 				if (textBoxUserName.Text == "test")
 				{
 					userID = 1;
+					hasAppointment = sql.Help.hasAppIn15(userID);
+
+					if (hasAppointment == true)
+					{
+
+						MessageBox.Show("You have an appointment in the next 15 minutes");
+
+					}
+
 				}
 				else
+				{
 					userID = 2;
+					hasAppointment = sql.Help.hasAppIn15(userID);
+
+					if (hasAppointment == true)
+					{
+						MessageBox.Show("You have an appointment in the next 15 minutes");
+
+					}
+				}
+				M1.Show();
 
 			}
 
@@ -124,7 +144,7 @@ namespace KyleDelacruzc969.Pages
 			
 
 			
-			if (region != "US") //switches language to German if region selected if not US
+			if (region != "US") //switches language to German if region selected is not US
 			{
 				labelUserName.Text = "Nutzername";
 				labelPassword.Text = "Passwort";

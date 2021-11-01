@@ -277,18 +277,34 @@ namespace KyleDelacruzc969.Pages
 			
 
 			con.Open();
-			string sqlString2 = "SELECT appointmentId, customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
+			string sqlAppointment = "SELECT appointmentId, customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
 
+			MySqlCommand cmd1 = new MySqlCommand(sqlAppointment, con);
+			MySqlDataReader reader = cmd1.ExecuteReader();
+			BindingList<Appointment> appointments = new BindingList<Appointment>();
 
-			MySqlCommand cmd2 = new MySqlCommand(sqlString2, con);
-			MySqlDataAdapter adp2 = new MySqlDataAdapter(cmd2);
-			DataTable appointment = new DataTable();
-			adp2.Fill(appointment);
-			dgvAppointment.DataSource = appointment;
+			if (reader.HasRows)
+			{
+				while (reader.Read())
+				{
+					appointments.Add(new Appointment(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2), reader.GetString(3), reader.GetDateTime(4).ToLocalTime(), reader.GetDateTime(5).ToLocalTime(), reader.GetInt32(6)));
+				}
+			}
+			else
+			{
+				MessageBox.Show("Empty list");
+			}
+
+			reader.Close();
+			dgvAppointment.DataSource = appointments;
 		}
 
         private void dgvAppointment_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+			dgvAppointment.EndEdit();
+			dgvAppointment.Refresh();
+			dgvAppointment.Update();
+			IndexRow = dgvAppointment.SelectedRows[0];
 			sql.Help.modifyIndex = dgvAppointment.SelectedRows[0];
 			var timeString = dgvAppointment.SelectedRows[0].Cells[3]+string.Empty;
 			 
