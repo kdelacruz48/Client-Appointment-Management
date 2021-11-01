@@ -188,7 +188,7 @@ namespace KyleDelacruzc969.sql
 			MySqlConnection con = new MySqlConnection(connectionString);
 
 			con.Open();
-			string sqlString = "SELECT * FROM customer WHERE customerName = '"+custName+"'";
+			string sqlString = "SELECT * FROM customer WHERE customerName = '" + custName + "'";
 			MySqlCommand cmd = new MySqlCommand(sqlString, con);
 			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
 			DataTable cust = new DataTable();
@@ -198,8 +198,8 @@ namespace KyleDelacruzc969.sql
 
 
 
-            try
-            {
+			try
+			{
 				DataRow[] rows = cust.Select("customerName = '" + custName + "'");
 				DataRow row = rows[0];
 				if (row == null)
@@ -207,15 +207,54 @@ namespace KyleDelacruzc969.sql
 					return false;
 				}
 			}
-            catch (Exception)
-            {
+			catch (Exception)
+			{
 
 				return false;
-            }
-			
+			}
+
 
 			return true;
 		}
+
+		public static bool hasAppointment(DateTime start, DateTime end)
+        {
+
+			
+
+			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			MySqlConnection con = new MySqlConnection(connectionString);
+
+			con.Open();
+			string sqlString = "SELECT * FROM appointment";
+			MySqlCommand cmd = new MySqlCommand(sqlString, con);
+			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+			DataTable appointment = new DataTable();
+
+			adp.Fill(appointment);
+			con.Close();
+
+			
+            foreach (DataRow item in appointment.Rows)
+            {
+				var start1 = item["start"].ToString();
+				DateTime startAppointment= DateTime.Parse(start1);
+
+				var end1 = item["end"].ToString();
+				DateTime endAppointment = DateTime.Parse(end1);
+
+				if ( start > startAppointment && start < endAppointment || start < startAppointment && end > startAppointment)
+				{
+					
+						return true;
+				}
+            }
+
+			return false;
+
+
+		}
+
 		
     }
 }

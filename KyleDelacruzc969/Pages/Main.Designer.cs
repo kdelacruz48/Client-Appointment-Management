@@ -44,10 +44,8 @@ namespace KyleDelacruzc969.Pages
             this.buttonDeleteC = new System.Windows.Forms.Button();
             this.buttonAll = new System.Windows.Forms.Button();
             this.buttonWeekly = new System.Windows.Forms.Button();
-            this.dgvLink = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLink)).BeginInit();
             this.SuspendLayout();
             // 
             // AppointmentsLabel
@@ -80,7 +78,7 @@ namespace KyleDelacruzc969.Pages
             this.dgvAppointment.ReadOnly = true;
             this.dgvAppointment.RowHeadersVisible = false;
             this.dgvAppointment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAppointment.Size = new System.Drawing.Size(892, 180);
+            this.dgvAppointment.Size = new System.Drawing.Size(743, 180);
             this.dgvAppointment.TabIndex = 2;
             this.dgvAppointment.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAppointment_CellContentClick);
             // 
@@ -94,12 +92,12 @@ namespace KyleDelacruzc969.Pages
             this.dgvCustomers.ReadOnly = true;
             this.dgvCustomers.RowHeadersVisible = false;
             this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCustomers.Size = new System.Drawing.Size(681, 173);
+            this.dgvCustomers.Size = new System.Drawing.Size(625, 173);
             this.dgvCustomers.TabIndex = 3;
             // 
             // buttonMonth
             // 
-            this.buttonMonth.Location = new System.Drawing.Point(791, 5);
+            this.buttonMonth.Location = new System.Drawing.Point(791, 152);
             this.buttonMonth.Name = "buttonMonth";
             this.buttonMonth.Size = new System.Drawing.Size(103, 31);
             this.buttonMonth.TabIndex = 4;
@@ -109,18 +107,18 @@ namespace KyleDelacruzc969.Pages
             // 
             // buttonReports
             // 
-            this.buttonReports.Location = new System.Drawing.Point(734, 228);
+            this.buttonReports.Location = new System.Drawing.Point(734, 294);
             this.buttonReports.Name = "buttonReports";
-            this.buttonReports.Size = new System.Drawing.Size(160, 39);
+            this.buttonReports.Size = new System.Drawing.Size(160, 51);
             this.buttonReports.TabIndex = 5;
             this.buttonReports.Text = "Reports";
             this.buttonReports.UseVisualStyleBackColor = true;
             // 
             // buttonLogOut
             // 
-            this.buttonLogOut.Location = new System.Drawing.Point(734, 453);
+            this.buttonLogOut.Location = new System.Drawing.Point(734, 375);
             this.buttonLogOut.Name = "buttonLogOut";
-            this.buttonLogOut.Size = new System.Drawing.Size(160, 40);
+            this.buttonLogOut.Size = new System.Drawing.Size(160, 55);
             this.buttonLogOut.TabIndex = 6;
             this.buttonLogOut.Text = "Switch User";
             this.buttonLogOut.UseVisualStyleBackColor = true;
@@ -188,7 +186,7 @@ namespace KyleDelacruzc969.Pages
             // 
             // buttonAll
             // 
-            this.buttonAll.Location = new System.Drawing.Point(573, 5);
+            this.buttonAll.Location = new System.Drawing.Point(791, 54);
             this.buttonAll.Name = "buttonAll";
             this.buttonAll.Size = new System.Drawing.Size(103, 31);
             this.buttonAll.TabIndex = 13;
@@ -198,7 +196,7 @@ namespace KyleDelacruzc969.Pages
             // 
             // buttonWeekly
             // 
-            this.buttonWeekly.Location = new System.Drawing.Point(682, 5);
+            this.buttonWeekly.Location = new System.Drawing.Point(791, 101);
             this.buttonWeekly.Name = "buttonWeekly";
             this.buttonWeekly.Size = new System.Drawing.Size(103, 31);
             this.buttonWeekly.TabIndex = 14;
@@ -206,24 +204,11 @@ namespace KyleDelacruzc969.Pages
             this.buttonWeekly.UseVisualStyleBackColor = true;
             this.buttonWeekly.Click += new System.EventHandler(this.buttonWeekly_Click);
             // 
-            // dgvLink
-            // 
-            this.dgvLink.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvLink.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLink.Location = new System.Drawing.Point(710, 273);
-            this.dgvLink.MultiSelect = false;
-            this.dgvLink.Name = "dgvLink";
-            this.dgvLink.ReadOnly = true;
-            this.dgvLink.RowHeadersVisible = false;
-            this.dgvLink.Size = new System.Drawing.Size(205, 174);
-            this.dgvLink.TabIndex = 15;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(927, 507);
-            this.Controls.Add(this.dgvLink);
             this.Controls.Add(this.buttonWeekly);
             this.Controls.Add(this.buttonAll);
             this.Controls.Add(this.buttonDeleteC);
@@ -244,7 +229,6 @@ namespace KyleDelacruzc969.Pages
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLink)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,6 +251,5 @@ namespace KyleDelacruzc969.Pages
         public System.Windows.Forms.DataGridView dgvAppointment;
         private System.Windows.Forms.Button buttonAll;
         private System.Windows.Forms.Button buttonWeekly;
-        private System.Windows.Forms.DataGridView dgvLink;
     }
 }

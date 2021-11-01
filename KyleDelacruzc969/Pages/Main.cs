@@ -23,25 +23,25 @@ namespace KyleDelacruzc969.Pages
 			MySqlConnection con = new MySqlConnection(connectionString);
 
 			con.Open();
-			string sqlString = "SELECT customerName, address, city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
+			string sqlString = "SELECT customerName, address, city, country, phone, customerId FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
 			string sqlAppointment = "SELECT appointmentId, customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
-			string link = "SELECT customerId, customerName FROM client_schedule.customer;";
+			
 
 			MySqlCommand cmd = new MySqlCommand(sqlString, con);
 			MySqlCommand cmd1 = new MySqlCommand(sqlAppointment, con);
-			MySqlCommand cmd2 = new MySqlCommand(link, con);
+		
 
 			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
-			MySqlDataAdapter adp2 = new MySqlDataAdapter(cmd2)
+			
 			/*MySqlDataAdapter adp1 = new MySqlDataAdapter(cmd1)*/;
 			//DataTable appointment = new DataTable();
 			DataTable customer = new DataTable();
-			DataTable link1 = new DataTable();
+			
 			//adp1.Fill(appointment);
 			adp.Fill(customer);
-			adp2.Fill(link1);
+			
 			dgvCustomers.DataSource = customer;
-			dgvLink.DataSource = link1;
+			
 			
 			//dgvAppointment.DataSource = appointment;
 
@@ -101,7 +101,7 @@ namespace KyleDelacruzc969.Pages
 				MySqlConnection con = new MySqlConnection(connectionString);
 
 				con.Open();
-				string sqlString = "SELECT customerName, address,  city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
+				string sqlString = "SELECT customerName, address,  city, country, phone, customerId FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
 
 
 				MySqlCommand cmd = new MySqlCommand(sqlString, con);
@@ -158,7 +158,7 @@ namespace KyleDelacruzc969.Pages
 				MySqlConnection con2 = new MySqlConnection(connectionString);
 
 				con.Open();
-				string sqlString2 = "SELECT customerName, address, city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
+				string sqlString2 = "SELECT customerName, address, city, country, phone, customerId FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
 
 
 				MySqlCommand cmd2 = new MySqlCommand(sqlString2, con2);
@@ -193,7 +193,7 @@ namespace KyleDelacruzc969.Pages
 				MySqlConnection con = new MySqlConnection(connectionString);
 
 				con.Open();
-				string sqlString = "SELECT customerName, address, city, country, phone FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
+				string sqlString = "SELECT customerName, address, city, country, phone, customerId FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId; ";
 
 
 				MySqlCommand cmd = new MySqlCommand(sqlString, con);

@@ -106,10 +106,20 @@ namespace KyleDelacruzc969.Pages
 					var userID1 = textBoxUserID.Text;
 					int userID;
 					Int32.TryParse(userID1, out userID);
+					bool appointmentCheck = sql.Help.hasAppointment(start, end);
 
-					Appointment appointment = new Appointment(custID, name, type, start, end, userID);
-					Appointment.addAppointment(appointment);
-					this.Close();
+					if (appointmentCheck == true)
+					{
+						MessageBox.Show("user already has scheduled meeting");
+
+					}
+					else 
+					{
+
+						Appointment appointment = new Appointment(custID, name, type, start, end, userID);
+						Appointment.addAppointment(appointment);
+						this.Close();
+					}
 				}
 			}
         }
