@@ -441,5 +441,11 @@ namespace KyleDelacruzc969.Pages
 			reader.Close();
 			dgvAppointment.DataSource = appointments;
 		}
+
+        private void buttonReports_Click(object sender, EventArgs e)
+        {
+			Reports R1 = new Reports();
+			R1.Show();
+        }
     }
 }

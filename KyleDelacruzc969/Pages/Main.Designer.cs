@@ -113,6 +113,7 @@ namespace KyleDelacruzc969.Pages
             this.buttonReports.TabIndex = 5;
             this.buttonReports.Text = "Reports";
             this.buttonReports.UseVisualStyleBackColor = true;
+            this.buttonReports.Click += new System.EventHandler(this.buttonReports_Click);
             // 
             // buttonLogOut
             // 
