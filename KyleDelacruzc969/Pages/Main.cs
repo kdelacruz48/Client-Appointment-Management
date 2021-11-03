@@ -201,6 +201,31 @@ namespace KyleDelacruzc969.Pages
 				adp.Fill(customer);
 				dgvCustomers.DataSource = customer;
 
+
+
+
+				
+				string sqlAppointment = "SELECT appointmentId, customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
+
+				MySqlCommand cmd1 = new MySqlCommand(sqlAppointment, con);
+				MySqlDataReader reader = cmd1.ExecuteReader();
+				BindingList<Appointment> appointments = new BindingList<Appointment>();
+
+				if (reader.HasRows)
+				{
+					while (reader.Read())
+					{
+						appointments.Add(new Appointment(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2), reader.GetString(3), reader.GetDateTime(4).ToLocalTime(), reader.GetDateTime(5).ToLocalTime(), reader.GetInt32(6)));
+					}
+				}
+				else
+				{
+					MessageBox.Show("Empty list");
+				}
+
+				reader.Close();
+				dgvAppointment.DataSource = appointments;
+
 			}
 
 			MC1.Show();
@@ -253,6 +278,8 @@ namespace KyleDelacruzc969.Pages
 			sql.Help.getAppointmentID();
 			var ID = sql.Help.appointmentCount;
 
+			IndexRow = dgvAppointment.SelectedRows[0];
+			ID = (int)IndexRow.Cells[0].Value;
 			
 
 			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
