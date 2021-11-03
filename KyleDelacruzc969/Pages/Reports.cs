@@ -49,7 +49,7 @@ namespace KyleDelacruzc969.Pages
         private void buttonShow_Click(object sender, EventArgs e)
         {
 
-			if (radioButtonType.Checked == true)
+			if (radioButtonType.Checked == true)        // display report of number of appointments that are of a selected type and month
 			{
 				var month = comboBox2.Text.ToString();
 				var type = comboBox1.Text.ToString();
@@ -89,7 +89,7 @@ namespace KyleDelacruzc969.Pages
 				dgvReports.DataSource = appointments;
 			}
 
-			else if (radioButtonSchedule.Checked == true)
+			else if (radioButtonSchedule.Checked == true)  // report shows selected user's appointments
 			{
 
 				if (comboBox3.Text.ToString() == "")
@@ -134,7 +134,7 @@ namespace KyleDelacruzc969.Pages
 					dgvReports.DataSource = appointments;
 				}
 			}
-			else
+			else   // shows a report with a list of customers and their phone numbers
 			{
 
 

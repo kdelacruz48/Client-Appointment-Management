@@ -30,7 +30,7 @@ namespace KyleDelacruzc969.Pages
 			MySqlCommand cmd = new MySqlCommand(sqlString, con);
 			MySqlDataAdapter adp2 = new MySqlDataAdapter(cmd);
 			DataTable customerName = new DataTable();
-			adp2.Fill(customerName);
+			adp2.Fill(customerName);                              // for populating name combobox with customers
 			con.Close();
 
 
@@ -74,13 +74,8 @@ namespace KyleDelacruzc969.Pages
 
 
 		}
-		string custName;
-		string type;
-		DateTime date;
-		DateTime start;
-		DateTime end;
-		string userId;
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+		
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)  //makes appointment end 30 minutes after start while changining time
         {
 			TimeSpan timeEnd = dateTimePicker2.Value.TimeOfDay;
 			var t = timeEnd += TimeSpan.FromMinutes(30);
@@ -94,7 +89,7 @@ namespace KyleDelacruzc969.Pages
 
         }
 
-		private void buttonModify_Click(object sender, EventArgs e)
+		private void buttonModify_Click(object sender, EventArgs e)  // modifies appointment in database
 		{
 			if (comboBoxName.Text == "")
 			{
@@ -124,7 +119,7 @@ namespace KyleDelacruzc969.Pages
 
 
 
-				if (local.TimeOfDay < s || local.TimeOfDay > en)
+				if (local.TimeOfDay < s || local.TimeOfDay > en)  // checks if outside buisness hours
 				{
 					MessageBox.Show("outside buisness hours");
 				}
@@ -142,7 +137,7 @@ namespace KyleDelacruzc969.Pages
 
 					bool appointmentCheck = sql.Help.hasAppointment(start, end);
 
-					if (appointmentCheck == true)
+					if (appointmentCheck == true)                           // checks if user already has a scheduled appointment
 					{
 						MessageBox.Show("User already has scheduled meeting");
 

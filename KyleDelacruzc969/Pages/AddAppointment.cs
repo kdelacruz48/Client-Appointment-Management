@@ -60,7 +60,7 @@ namespace KyleDelacruzc969.Pages
 			
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void buttonAdd_Click(object sender, EventArgs e)  // adds appointment to database
         {
 			
 
@@ -124,10 +124,10 @@ namespace KyleDelacruzc969.Pages
 			}
         }
 
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)    // keeps appointment end 30 minutes after start, when changing time
         {
 			TimeSpan timeEnd = dateTimePicker2.Value.TimeOfDay;
-			var t = timeEnd += TimeSpan.FromMinutes(30);
+			var t = timeEnd += TimeSpan.FromMinutes(30);                           
 			string format = t.ToString(@"hh\:mm\:ss");
 			string format1 = DateTime.Parse(format).ToString("hh:mm tt");
 			this.textBoxEnd.Text = format1;

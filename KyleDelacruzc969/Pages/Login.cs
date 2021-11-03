@@ -19,16 +19,7 @@ namespace KyleDelacruzc969.Pages
 		public Login()
 		{
 			InitializeComponent();
-			//string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
-			//MySqlConnection con = new MySqlConnection(connectionString);
-
-			//con.Open();
-			//string sqlString = "SELECT * From User";
-			//MySqlCommand cmd = new MySqlCommand(sqlString, con);    //this will not stay here, and delete dgv just for testing
-			//MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
-			//DataTable dt = new DataTable();
-			//adp.Fill(dt);
-			//dataGridView1.DataSource = dt;
+		
 		}
 
 		public static bool IsUser = false;
@@ -50,7 +41,7 @@ namespace KyleDelacruzc969.Pages
 			MySqlConnection con = new MySqlConnection(connectionString);
 
 			con.Open();
-			string sqlString = "SELECT * From User";
+			string sqlString = "SELECT * From User";                       //search database for user and password
 			MySqlCommand cmd = new MySqlCommand(sqlString, con);    
 			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
 			DataTable dt = new DataTable();
@@ -84,7 +75,7 @@ namespace KyleDelacruzc969.Pages
 			}
 
 
-			if (userName == textBoxUserName.Text && password == textBoxPassword.Text)
+			if (userName == textBoxUserName.Text && password == textBoxPassword.Text)   // check if correct username and password
 			{
 
 				Main M1 = new Main();
@@ -93,7 +84,7 @@ namespace KyleDelacruzc969.Pages
 				if (textBoxUserName.Text == "test")
 				{
 					userID = 1;
-					hasAppointment = sql.Help.hasAppIn15(userID);
+					hasAppointment = sql.Help.hasAppIn15(userID);              // check for appointment in next 15
 
 					if (hasAppointment == true)
 					{
@@ -115,7 +106,7 @@ namespace KyleDelacruzc969.Pages
 					}
 				}
 
-				try
+				try          //write login info to txt file
 				{
 					var time = DateTime.Now.ToLocalTime();
 					using (StreamWriter login = new StreamWriter("C:\\Users\\LabUser\\source\\repos\\KyleDelacruzc969\\LoginTracker.txt", true))
@@ -133,7 +124,7 @@ namespace KyleDelacruzc969.Pages
 
 			}
 
-			else if (IsUser == false && region != "US")
+			else if (IsUser == false && region != "US")   // input validation for different region login
 			{
 				MessageBox.Show("falsch Anmeldeinformation en");
 

@@ -33,7 +33,7 @@ namespace KyleDelacruzc969.classes
 			this.Phone = Phone;
 		}
 
-		public static void AddCustomer(Customer customer)
+		public static void AddCustomer(Customer customer)  // add customer to database
 		{
 			var address = customer.Address;
 			var cityID = customer.City;

@@ -8,7 +8,7 @@ namespace KyleDelacruzc969.classes
 {
     class Check
     {
-        public static bool isNumber(string phone)
+        public static bool isNumber(string phone) // used to check if phone number consists of numbers and "-"
         {
             foreach (var number in phone)
             {

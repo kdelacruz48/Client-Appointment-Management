@@ -43,7 +43,7 @@ namespace KyleDelacruzc969.classes
             this.userId = userId;
             this.type = type;
         }
-        public static void addAppointment(Appointment appointment)
+        public static void addAppointment(Appointment appointment)  //add apointment to database
         {
             string dateTimeInsertS = appointment.start.ToString("yyyy-MM-dd HH:mm");
             string dateTimeInserE = appointment.end.ToString("yyyy-MM-dd HH:mm");
@@ -64,7 +64,7 @@ namespace KyleDelacruzc969.classes
             con.Close();
         }
 
-        public static void modifyAppointment(Appointment update)
+        public static void modifyAppointment(Appointment update)  //modify appointment in database 
         {
             string dateTimeInsertS = update.start.ToString("yyyy-MM-dd HH:mm");
             string dateTimeInserE = update.end.ToString("yyyy-MM-dd HH:mm");

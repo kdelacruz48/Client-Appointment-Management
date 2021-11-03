@@ -29,7 +29,7 @@ namespace KyleDelacruzc969.Pages
 		public string country;
 		public int cityID;
 
-		private void ModifyCustomer_Load(object sender, EventArgs e)
+		private void ModifyCustomer_Load(object sender, EventArgs e)   // populates the form
         {
 			name = Main.CustomerIndex.Cells[0].Value + string.Empty;
 			address = Main.CustomerIndex.Cells[1].Value+ string.Empty;
@@ -46,7 +46,7 @@ namespace KyleDelacruzc969.Pages
 			nameCheck = name;
 		}
 
-        private void buttonAdd_Click(object sender, EventArgs e) //Modify button
+        private void buttonAdd_Click(object sender, EventArgs e) //Modify button -- modify customer in the database
         {
 			sql.Help.getAddress(address);
 

@@ -29,7 +29,7 @@ namespace KyleDelacruzc969.Pages
 			this.Close();
 		}
 
-		private void buttonAdd_Click(object sender, EventArgs e)
+		private void buttonAdd_Click(object sender, EventArgs e)  // add customer to database
 		{
 			name1 = textBoxName.Text;
 			address1 = textBoxAddress.Text;
@@ -73,7 +73,7 @@ namespace KyleDelacruzc969.Pages
 			}
 		}
 
-		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)    // cahnges country based on selected city
 		{
 			if (comboBoxCity.Text == "New York" || comboBoxCity.Text == "Los Angeles")
 			{

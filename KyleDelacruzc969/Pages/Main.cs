@@ -19,7 +19,7 @@ namespace KyleDelacruzc969.Pages
 		{
 			InitializeComponent();
 
-			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;    // fill dgv's
 			MySqlConnection con = new MySqlConnection(connectionString);
 
 			con.Open();
@@ -33,17 +33,16 @@ namespace KyleDelacruzc969.Pages
 
 			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
 			
-			/*MySqlDataAdapter adp1 = new MySqlDataAdapter(cmd1)*/;
-			//DataTable appointment = new DataTable();
+		
 			DataTable customer = new DataTable();
 			
-			//adp1.Fill(appointment);
+			
 			adp.Fill(customer);
 			
 			dgvCustomers.DataSource = customer;
 			
 			
-			//dgvAppointment.DataSource = appointment;
+			
 
 			MySqlDataReader reader = cmd1.ExecuteReader();
 			BindingList<Appointment> appointments = new BindingList<Appointment>();
@@ -90,7 +89,7 @@ namespace KyleDelacruzc969.Pages
 			AddCustomer AC1 = new AddCustomer();
 			
 
-			AC1.FormClosed += new FormClosedEventHandler(Form_Closed);
+			AC1.FormClosed += new FormClosedEventHandler(Form_Closed);  // watches for form closed to update dgv, used throughout.
 	        
 			void Form_Closed(object sender1, EventArgs e1)
 			{
@@ -114,7 +113,7 @@ namespace KyleDelacruzc969.Pages
 			AC1.Show();
 		}
 
-        private void buttonDeleteC_Click(object sender, EventArgs e)
+        private void buttonDeleteC_Click(object sender, EventArgs e)// deletes customer from database
         {
 
 			
@@ -175,7 +174,7 @@ namespace KyleDelacruzc969.Pages
 			
         }
 
-        private void buttonModifyC_Click(object sender, EventArgs e)
+        private void buttonModifyC_Click(object sender, EventArgs e) // modify customer in database
         {
 			CustomerIndex = dgvCustomers.SelectedRows[0];
 			IndexRow = dgvCustomers.SelectedRows[0];
@@ -209,7 +208,7 @@ namespace KyleDelacruzc969.Pages
             
         }
 
-        private void buttonAddA_Click(object sender, EventArgs e)
+        private void buttonAddA_Click(object sender, EventArgs e) // adds appointment to database
         {
 			AddAppointment A1 = new AddAppointment();
 
@@ -249,7 +248,7 @@ namespace KyleDelacruzc969.Pages
 			A1.Show();
         }
 
-        private void buttonDeleteA_Click(object sender, EventArgs e)
+        private void buttonDeleteA_Click(object sender, EventArgs e)  // deletes appointment from database
         {
 			sql.Help.getAppointmentID();
 			var ID = sql.Help.appointmentCount;
@@ -299,7 +298,7 @@ namespace KyleDelacruzc969.Pages
 			dgvAppointment.DataSource = appointments;
 		}
 
-        private void dgvAppointment_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvAppointment_CellContentClick(object sender, DataGridViewCellEventArgs e)  // updates some indexes for use elsewhere
         {
 			dgvAppointment.EndEdit();
 			dgvAppointment.Refresh();
@@ -310,7 +309,7 @@ namespace KyleDelacruzc969.Pages
 			 
         }
 
-		private void buttonModifyA_Click(object sender, EventArgs e)
+		private void buttonModifyA_Click(object sender, EventArgs e) //Modify appointment in database
 		{
 			IndexRow = dgvAppointment.SelectedRows[0];
 			ModifyAppointment MA1 = new ModifyAppointment();
@@ -351,7 +350,7 @@ namespace KyleDelacruzc969.Pages
 			
 		}
 
-        private void buttonAll_Click(object sender, EventArgs e)
+        private void buttonAll_Click(object sender, EventArgs e)  // shows all appointments in calender
         {
 			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
 			MySqlConnection con = new MySqlConnection(connectionString);
@@ -379,7 +378,7 @@ namespace KyleDelacruzc969.Pages
 			dgvAppointment.DataSource = appointments;
 		}
 
-        private void buttonWeekly_Click(object sender, EventArgs e)
+        private void buttonWeekly_Click(object sender, EventArgs e) // shows all appointments for the next week in calender
         {
 			var now = DateTime.Now;
 			var now1 = now.ToString("yyyy-MM-dd HH:mm");
@@ -411,7 +410,8 @@ namespace KyleDelacruzc969.Pages
 
 		}
 
-        private void buttonMonth_Click(object sender, EventArgs e)
+        private void buttonMonth_Click(object sender, EventArgs e) // shows all appointments for the next month in the calender
+			                                                       
         {
 			var now = DateTime.Now;
 			var now1 = now.ToString("yyyy-MM-dd HH:mm");
