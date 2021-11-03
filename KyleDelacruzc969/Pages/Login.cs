@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,9 +86,9 @@ namespace KyleDelacruzc969.Pages
 
 			if (userName == textBoxUserName.Text && password == textBoxPassword.Text)
 			{
-				
+
 				Main M1 = new Main();
-				
+
 
 				if (textBoxUserName.Text == "test")
 				{
@@ -113,19 +114,63 @@ namespace KyleDelacruzc969.Pages
 
 					}
 				}
+
+				try
+				{
+					var time = DateTime.Now.ToLocalTime();
+					using (StreamWriter login = new StreamWriter("C:\\Users\\LabUser\\source\\repos\\KyleDelacruzc969\\LoginTracker.txt", true))
+					{
+						login.WriteLine("user " + userID +" logged in at " + time + ".");
+					}
+				}
+
+				catch (DirectoryNotFoundException)
+				{
+					MessageBox.Show("Not Found");
+				}
+
 				M1.Show();
 
 			}
 
-			else if (IsUser == false && region != "US" )
+			else if (IsUser == false && region != "US")
 			{
 				MessageBox.Show("falsch Anmeldeinformation en");
+
+				try
+				{
+					var time = DateTime.Now.ToLocalTime();
+					using (StreamWriter login = new StreamWriter("C:\\Users\\LabUser\\source\\repos\\KyleDelacruzc969\\LoginTracker.txt", true))
+					{
+						login.WriteLine("failed login at " + time + ".");
+					}
+				}
+
+				catch (DirectoryNotFoundException)
+				{
+					MessageBox.Show("Not Found");
+				}
 			}
 
-			else
+			else if (IsUser == false && region == "US")
 			{
 				MessageBox.Show("Invalid login");
+				try
+				{
+					var time = DateTime.Now.ToLocalTime();
+					using (StreamWriter login = new StreamWriter("C:\\Users\\LabUser\\source\\repos\\KyleDelacruzc969\\LoginTracker.txt", true))
+					{
+						login.WriteLine("failed login at " + time + ".");
+					}
+				}
+
+				catch (DirectoryNotFoundException)
+				{
+					MessageBox.Show("Not Found");
+				}
 			}
+
+			
 		}
 
 		private void buttonExit_Click(object sender, EventArgs e)
