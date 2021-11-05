@@ -17,7 +17,7 @@ namespace KyleDelacruzc969.Pages
 	{
 		public ModifyAppointment()
 		{
-			
+
 
 			InitializeComponent();
 			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
@@ -34,49 +34,49 @@ namespace KyleDelacruzc969.Pages
 			con.Close();
 
 
-           
-				this.comboBoxName.DataSource = customerName;
-				this.comboBoxName.DisplayMember = "customerName";
 
-				comboBoxName.Text = Main.IndexRow.Cells[1].Value.ToString();
+			this.comboBoxName.DataSource = customerName;
+			this.comboBoxName.DisplayMember = "customerName";
 
-
-				if (Main.IndexRow.Cells[2].Value + string.Empty == "Consultation")
-					comboBoxType.SelectedIndex = 0;
-
-				else if (Main.IndexRow.Cells[2].Value + string.Empty == "Review")
-					comboBoxType.SelectedIndex = 1;
-
-				else if (Main.IndexRow.Cells[2].Value + string.Empty == "Final")
-					comboBoxType.SelectedIndex = 2;
-
-				else
-					comboBoxType.SelectedIndex = -1;
+			comboBoxName.Text = Main.IndexRow.Cells[1].Value.ToString();
 
 
-				dateTimePicker1.Value = (DateTime)Main.IndexRow.Cells[3].Value;
-				dateTimePicker2.Value = (DateTime)Main.IndexRow.Cells[3].Value;
+			if (Main.IndexRow.Cells[2].Value + string.Empty == "Consultation")
+				comboBoxType.SelectedIndex = 0;
+
+			else if (Main.IndexRow.Cells[2].Value + string.Empty == "Review")
+				comboBoxType.SelectedIndex = 1;
+
+			else if (Main.IndexRow.Cells[2].Value + string.Empty == "Final")
+				comboBoxType.SelectedIndex = 2;
+
+			else
+				comboBoxType.SelectedIndex = -1;
+
+
+			dateTimePicker1.Value = (DateTime)Main.IndexRow.Cells[3].Value;
+			dateTimePicker2.Value = (DateTime)Main.IndexRow.Cells[3].Value;
 
 
 
-				TimeSpan timeEnd = dateTimePicker2.Value.TimeOfDay;    // make appoint ment end 30 minutes after set, formatted in AM/PM
-				var t = timeEnd += TimeSpan.FromMinutes(30);
-				string format = t.ToString(@"hh\:mm\:ss");
-				string format1 = DateTime.Parse(format).ToString("hh:mm tt");
-				this.textBoxEnd.Text = format1;
+			TimeSpan timeEnd = dateTimePicker2.Value.TimeOfDay;    // make appoint ment end 30 minutes after set, formatted in AM/PM
+			var t = timeEnd += TimeSpan.FromMinutes(30);
+			string format = t.ToString(@"hh\:mm\:ss");
+			string format1 = DateTime.Parse(format).ToString("hh:mm tt");
+			this.textBoxEnd.Text = format1;
 
 
-				textBoxUserID.Text = Main.IndexRow.Cells[5].Value + string.Empty;
-			
-            
-			
-			
+			textBoxUserID.Text = Main.IndexRow.Cells[5].Value + string.Empty;
+
+
+
+
 
 
 		}
-		
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)  //makes appointment end 30 minutes after start while changining time
-        {
+
+		private void dateTimePicker2_ValueChanged(object sender, EventArgs e)  //makes appointment end 30 minutes after start while changining time
+		{
 			TimeSpan timeEnd = dateTimePicker2.Value.TimeOfDay;
 			var t = timeEnd += TimeSpan.FromMinutes(30);
 			string format = t.ToString(@"hh\:mm\:ss");
@@ -84,12 +84,12 @@ namespace KyleDelacruzc969.Pages
 			this.textBoxEnd.Text = format1;
 		}
 
-        private void ModifyAppointment_Load(object sender, EventArgs e)
-        {
+		private void ModifyAppointment_Load(object sender, EventArgs e)
+		{
 
-        }
+		}
 
-		private void buttonModify_Click(object sender, EventArgs e)  // modifies appointment in database
+		private void buttonModify_Click(object sender, EventArgs e) // modifies appointment in database
 		{
 			if (comboBoxName.Text == "")
 			{
@@ -116,8 +116,7 @@ namespace KyleDelacruzc969.Pages
 
 				TimeSpan s = DateTime.Parse("9:00 AM").TimeOfDay;
 				TimeSpan en = DateTime.Parse("5:00 PM").TimeOfDay;
-
-
+				
 
 				if (local.TimeOfDay < s || local.TimeOfDay > en)  // checks if outside buisness hours
 				{
@@ -135,9 +134,13 @@ namespace KyleDelacruzc969.Pages
 					int userID;
 					Int32.TryParse(userID1, out userID);
 
-					bool appointmentCheck = sql.Help.hasAppointment(start, end);
 
-					if (appointmentCheck == true)                           // checks if user already has a scheduled appointment
+                    bool appointmentCheck = sql.Help.hasAppointment(start, end);
+
+
+
+
+                    if (appointmentCheck == true)                           // checks if user already has a scheduled appointment
 					{
 						MessageBox.Show("User already has scheduled meeting");
 

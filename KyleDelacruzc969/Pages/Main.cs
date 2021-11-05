@@ -15,8 +15,9 @@ namespace KyleDelacruzc969.Pages
 {
 	public partial class Main : Form
 	{
-		public Main()
-		{
+		public Main()                  //My Lambdas are located in the check class, and the sql.help class(hasAppIn15)
+		{                               // I am pretty new to this so if this need revision, specific input would be a huge 
+			                           // help. Thank you! 
 			InitializeComponent();
 
 			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;    // fill dgv's

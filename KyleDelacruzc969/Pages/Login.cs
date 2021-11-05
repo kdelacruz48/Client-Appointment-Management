@@ -52,6 +52,7 @@ namespace KyleDelacruzc969.Pages
 			{
 				foreach (DataColumn column in dt.Columns)
 				{
+
 					var temp = row[column].ToString();
 					list.Add(temp);
 

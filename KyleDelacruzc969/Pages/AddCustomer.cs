@@ -13,6 +13,8 @@ namespace KyleDelacruzc969.Pages
 {
 	public partial class AddCustomer : Form
 	{
+		
+
 		public AddCustomer()
 		{
 			InitializeComponent();
@@ -37,8 +39,18 @@ namespace KyleDelacruzc969.Pages
 			country1 = comboBoxCountry.Text;
 			phone1 = textBoxPhone.Text;
 
+
+			
+
+
+            
+
+            
+
 			bool check = Check.isNumber(phone1);
 			bool isCust = sql.Help.isCustomer(name1);
+
+
 
 			if (textBoxName.Text == string.Empty)
 			{
@@ -75,6 +87,8 @@ namespace KyleDelacruzc969.Pages
 
 		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)    // cahnges country based on selected city
 		{
+			
+			
 			if (comboBoxCity.Text == "New York" || comboBoxCity.Text == "Los Angeles")
 			{
 				comboBoxCountry.Text = "US";

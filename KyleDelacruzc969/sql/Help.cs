@@ -12,8 +12,10 @@ using MySql.Data.MySqlClient;
 
 namespace KyleDelacruzc969.sql
 {
+	
 	class Help
 	{
+
 		public static int addressIndex;
 		public static int customerIndex;
 		public static int customerId;
@@ -33,6 +35,9 @@ namespace KyleDelacruzc969.sql
 
 			adp.Fill(address);
 			con.Close();
+
+
+           
 
 			foreach (DataRow row in address.Rows)
 			{
@@ -55,6 +60,8 @@ namespace KyleDelacruzc969.sql
 			adp.Fill(address);
 			con.Close();
 
+
+			
 			DataRow[] rows = address.Select("address = '" + address1 + "'");
 			addressIndex = address.Rows.IndexOf(rows[0]);
 			addressIndex = addressIndex + 1;
@@ -80,7 +87,11 @@ namespace KyleDelacruzc969.sql
 
 
 			DataRow[] rows = address.Select("customerName = '" + custName + "'");
+
 			customerIndex = address.Rows.IndexOf(rows[0]);
+
+
+
 			customerIndex = customerIndex + 1;
 
 
@@ -201,6 +212,9 @@ namespace KyleDelacruzc969.sql
 			try
 			{
 				DataRow[] rows = cust.Select("customerName = '" + custName + "'");
+				
+				
+
 				DataRow row = rows[0];
 				if (row == null)
 				{
@@ -243,6 +257,9 @@ namespace KyleDelacruzc969.sql
 				var end1 = item["end"].ToString();
 				DateTime endAppointment = DateTime.Parse(end1);
 
+
+
+				
 				if ( start > startAppointment && start < endAppointment || start < startAppointment && end > startAppointment)  // check to see if appointment overlapps
 				{
 					
@@ -286,14 +303,26 @@ namespace KyleDelacruzc969.sql
 
 					var IdCheck = item["userId"].ToString();
 					int IdCheck1 = int.Parse(IdCheck);
-
+					
 
 					var now = DateTime.Now;
 					now = now.ToLocalTime();
-					var plus = now.AddMinutes(15);
+					
+					DateTime plus = DateTime.Now; 
+					
+					// LAMBDA - this lambda is a simpler way to check for an upcoming appointment 
+					// than what I originally had in place
 
-					if (now < startAppointment && plus > startAppointment && IdCheck1 == userID )  
-					{
+					Action<DateTime> addIt = (i) =>       
+					 {
+						 plus = i.AddMinutes(15);
+					 };
+
+					addIt(now);
+					
+
+                    if (now < startAppointment && plus > startAppointment && IdCheck1 == userID)
+                    {
 
 						return true;
 					}

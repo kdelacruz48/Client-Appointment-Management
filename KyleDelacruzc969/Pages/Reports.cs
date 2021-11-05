@@ -48,7 +48,7 @@ namespace KyleDelacruzc969.Pages
 
         private void buttonShow_Click(object sender, EventArgs e)
         {
-
+			
 			if (radioButtonType.Checked == true)        // display report of number of appointments that are of a selected type and month
 			{
 				var month = comboBox2.Text.ToString();
@@ -115,7 +115,9 @@ namespace KyleDelacruzc969.Pages
 					MySqlDataReader reader = cmd1.ExecuteReader();
 					BindingList<Appointment> appointments = new BindingList<Appointment>();
 
-					if (reader.HasRows)
+					
+
+					if (reader.HasRows) 
 					{
 						while (reader.Read())
 						{
