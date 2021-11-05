@@ -180,7 +180,8 @@ namespace KyleDelacruzc969.Pages
 			CustomerIndex = dgvCustomers.SelectedRows[0];
 			IndexRow = dgvCustomers.SelectedRows[0];
 
-			ModifyCustomer MC1 = new ModifyCustomer();
+			ModifyCustomer MC1 = new ModifyCustomer();      // found this online at https://stackoverflow.com/questions/30536808/know-when-child-form-closed
+			                                                // Makes dgv update when form closes
 
 			MC1.FormClosed += new FormClosedEventHandler(Form_Closed);
 
