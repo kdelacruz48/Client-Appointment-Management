@@ -398,5 +398,32 @@ namespace KyleDelacruzc969.sql
 
 			
 		}
+
+		public static bool hasExistingAppointment(string custId)
+        {
+			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			MySqlConnection con = new MySqlConnection(connectionString);
+
+			con.Open();
+			string sqlString = "SELECT * FROM appointment";
+			MySqlCommand cmd = new MySqlCommand(sqlString, con);
+			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+			DataTable appointment = new DataTable();
+
+			adp.Fill(appointment);
+			con.Close();
+
+			foreach (DataRow row in appointment.Rows)
+			{
+
+				var tempString = row["customerId"].ToString();
+				if(tempString == custId)
+                {
+					return true;
+                }
+
+			}
+			return false;
+		}
 	}
 }

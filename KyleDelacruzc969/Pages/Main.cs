@@ -125,8 +125,16 @@ namespace KyleDelacruzc969.Pages
 
 				var deleteName = dgvCustomers.SelectedRows[0].Cells[0].Value;
 				var deleteAddress = dgvCustomers.SelectedRows[0].Cells[1].Value;
+			    var deleteId = dgvCustomers.SelectedRows[0].Cells[5].Value + string.Empty;
 
+			    bool cantDelete = sql.Help.hasExistingAppointment(deleteId);
 
+			if (cantDelete == true)
+			{
+				MessageBox.Show("Customer has existing appointment, please delete appointment first");
+			}
+			else
+			{
 				sql.Help.NameForDelete(custName);
 
 				string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
@@ -170,8 +178,8 @@ namespace KyleDelacruzc969.Pages
 
 
 
-			
 
+			}
 			
         }
 
