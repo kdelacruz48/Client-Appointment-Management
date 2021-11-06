@@ -40,8 +40,8 @@ namespace KyleDelacruzc969.Pages
 			textBoxName.Text = name;
 			textBoxAddress.Text = address;
 			textBoxPhone.Text = phone;
-			comboBoxCity.Text = city;
-			comboBoxCountry.Text = country;
+			textBoxCity.Text = city;
+			textBoxCountry.Text = country;
 
 			nameCheck = name;
 		}
@@ -52,35 +52,37 @@ namespace KyleDelacruzc969.Pages
 
 			var modifyName = Main.IndexRow.Cells[0].Value;
 			var modifyAddress = Main.IndexRow.Cells[1].Value;
+			var modifyId = Main.IndexRow.Cells[5].Value.ToString();
+			var modifyCheck = Main.IndexRow.Cells[5].Value;
 
 			name = textBoxName.Text;
 			address = textBoxAddress.Text; 
 			phone = textBoxPhone.Text;
-			city = comboBoxCity.Text;
-			country = comboBoxCountry.Text;
+			city = textBoxCity.Text;
+			country = textBoxCountry.Text;
 
 			
 
-			if (city == "New York" )
-			{
-				cityID = 1;
-			}
-			else if (city == "Los Angeles" )
-			{
-				cityID = 2;
-			}
-			else if (city == "Toronto")
-			{
-				cityID = 3;
-			}
-			else if (city == "Vancouver")
-			{
-				cityID = 4;
-			}
-			else
-			{
-				cityID = 5;
-			}
+			//if (city == "New York" )
+			//{
+			//	cityID = 1;
+			//}
+			//else if (city == "Los Angeles" )
+			//{
+			//	cityID = 2;
+			//}
+			//else if (city == "Toronto")
+			//{
+			//	cityID = 3;
+			//}
+			//else if (city == "Vancouver")
+			//{
+			//	cityID = 4;
+			//}
+			//else
+			//{
+			//	cityID = 5;
+			//}
 
 
 			bool check = Check.isNumber(phone);
@@ -104,8 +106,19 @@ namespace KyleDelacruzc969.Pages
             {
 				MessageBox.Show("customer already exists");
             }
+			else if (textBoxCity.Text == string.Empty)
+            {
+				MessageBox.Show("please select a city");
+            }
+			else if (textBoxCountry.Text == string.Empty)
+            {
+				MessageBox.Show("Please enter a country");
+            }
 			else
 			{
+
+				sql.Help.findCCForModify(modifyId);
+
 				string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
 				MySqlConnection con = new MySqlConnection(connectionString);
 
@@ -113,11 +126,17 @@ namespace KyleDelacruzc969.Pages
 
 
 
-				string sqlStringAddress = "UPDATE  address  SET address ='" + address + "', cityID ='" + cityID + "',phone ='" + phone + "' WHERE (address = '" + modifyAddress + "')";
+				string sqlStringAddress = "UPDATE  address  SET address ='" + address + "', cityID ='" + sql.Help.CityId + "',phone ='" + phone + "' WHERE (address = '" + modifyAddress + "')";
 
 				string sqlString = "UPDATE customer SET customerName ='" + name + "' WHERE (customerName = '" + modifyName + "')";
+				string sqlCity = "UPDATE city SET city ='" + city + "' WHERE (cityId = '" +sql.Help.CityId + "')";
+				string sqlCountry = "UPDATE country SET country ='" + country + "'WHERE (countryId = '" + sql.Help.CountryId + "')";
+				MySqlCommand cmd3 = new MySqlCommand(sqlCountry, con);
+				MySqlCommand cmd2 = new MySqlCommand(sqlCity, con);
 				MySqlCommand cmd = new MySqlCommand(sqlString, con);
 				MySqlCommand cmd1 = new MySqlCommand(sqlStringAddress, con);
+				cmd3.ExecuteNonQuery();
+				cmd2.ExecuteNonQuery();
 				cmd1.ExecuteNonQuery();
 				cmd.ExecuteNonQuery();
 				con.Close();
@@ -127,20 +146,20 @@ namespace KyleDelacruzc969.Pages
 
         private void comboBoxCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
-			if (comboBoxCity.Text == "New York" || comboBoxCity.Text == "Los Angeles")
-			{
-				comboBoxCountry.Text = "US";
-			}
+			//if (comboBoxCity.Text == "New York" || comboBoxCity.Text == "Los Angeles")
+			//{
+			//	comboBoxCountry.Text = "US";
+			//}
 
-			else if (comboBoxCity.Text == "Toronto" || comboBoxCity.Text == "Vancouver")
-			{
-				comboBoxCountry.Text = "Canada";
-			}
+			//else if (comboBoxCity.Text == "Toronto" || comboBoxCity.Text == "Vancouver")
+			//{
+			//	comboBoxCountry.Text = "Canada";
+			//}
 
-			else
-			{
-				comboBoxCountry.Text = "Norway";
-			}
+			//else
+			//{
+			//	comboBoxCountry.Text = "Norway";
+			//}
 		}
 
         private void buttonCancel_Click(object sender, EventArgs e)

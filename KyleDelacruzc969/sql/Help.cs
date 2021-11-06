@@ -12,7 +12,7 @@ using MySql.Data.MySqlClient;
 
 namespace KyleDelacruzc969.sql
 {
-	
+
 	class Help
 	{
 
@@ -22,6 +22,8 @@ namespace KyleDelacruzc969.sql
 		public static int appointmentCount;
 		public static int nextAppointment;
 		public static DataGridViewRow modifyIndex;
+		public static int CityId;
+		public static int CountryId;
 		public static void getAddressID()
 		{
 			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
@@ -37,7 +39,7 @@ namespace KyleDelacruzc969.sql
 			con.Close();
 
 
-           
+
 
 			foreach (DataRow row in address.Rows)
 			{
@@ -61,7 +63,7 @@ namespace KyleDelacruzc969.sql
 			con.Close();
 
 
-			
+
 			DataRow[] rows = address.Select("address = '" + address1 + "'");
 			addressIndex = address.Rows.IndexOf(rows[0]);
 			addressIndex = addressIndex + 1;
@@ -212,8 +214,8 @@ namespace KyleDelacruzc969.sql
 			try
 			{
 				DataRow[] rows = cust.Select("customerName = '" + custName + "'");
-				
-				
+
+
 
 				DataRow row = rows[0];
 				if (row == null)
@@ -232,9 +234,9 @@ namespace KyleDelacruzc969.sql
 		}
 
 		public static bool hasAppointment(DateTime start, DateTime end)
-        {
+		{
 
-			
+
 
 			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
 			MySqlConnection con = new MySqlConnection(connectionString);
@@ -248,24 +250,24 @@ namespace KyleDelacruzc969.sql
 			adp.Fill(appointment);
 			con.Close();
 
-			
-            foreach (DataRow item in appointment.Rows)
-            {
+
+			foreach (DataRow item in appointment.Rows)
+			{
 				var start1 = item["start"].ToString();
-				DateTime startAppointment= DateTime.Parse(start1);
+				DateTime startAppointment = DateTime.Parse(start1);
 
 				var end1 = item["end"].ToString();
 				DateTime endAppointment = DateTime.Parse(end1);
 
 
 
-				
-				if ( start > startAppointment && start < endAppointment || start < startAppointment && end > startAppointment)  // check to see if appointment overlapps
+
+				if (start > startAppointment && start < endAppointment || start < startAppointment && end > startAppointment)  // check to see if appointment overlapps
 				{
-					
-						return true;
+
+					return true;
 				}
-            }
+			}
 
 			return false;
 
@@ -274,7 +276,7 @@ namespace KyleDelacruzc969.sql
 
 
 		public static bool hasAppIn15(int userID)
-        {
+		{
 			{
 
 
@@ -303,26 +305,26 @@ namespace KyleDelacruzc969.sql
 
 					var IdCheck = item["userId"].ToString();
 					int IdCheck1 = int.Parse(IdCheck);
-					
+
 
 					var now = DateTime.Now;
 					now = now.ToLocalTime();
-					
-					DateTime plus = DateTime.Now; 
-					
+
+					DateTime plus = DateTime.Now;
+
 					// LAMBDA - this lambda is a simpler way to check for an upcoming appointment 
 					// than what I originally had in place
 
-					Action<DateTime> addIt = (i) =>       
+					Action<DateTime> addIt = (i) =>
 					 {
 						 plus = i.AddMinutes(15);
 					 };
 
 					addIt(now);
-					
 
-                    if (now < startAppointment && plus > startAppointment && IdCheck1 == userID)
-                    {
+
+					if (now < startAppointment && plus > startAppointment && IdCheck1 == userID)
+					{
 
 						return true;
 					}
@@ -332,8 +334,69 @@ namespace KyleDelacruzc969.sql
 
 
 			}
+
+
+
+		}
+		public static int findLastCity()
+		{
+			int temp = 0;
+
+			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			MySqlConnection con = new MySqlConnection(connectionString);
+
+			con.Open();
+			string sqlString = "SELECT * FROM city";
+			MySqlCommand cmd = new MySqlCommand(sqlString, con);
+			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+			DataTable city1 = new DataTable();
+
+			adp.Fill(city1);
+			con.Close();
+
+			foreach (DataRow row in city1.Rows)
+			{
+
+				var tempString = row["cityId"].ToString();
+				Int32.TryParse(tempString, out temp);
+				temp++;
+			}
+
+			return temp;
 		}
 
-		
-    }
+		public static void findCCForModify(string iD) //find cityId and CountryId for modify customer
+		{
+			int city;
+			int country;
+			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			MySqlConnection con = new MySqlConnection(connectionString);
+
+			con.Open();
+			string sqlString = "SELECT city, city.cityID,country, city.countryId, customerId FROM client_schedule.customer Left join client_schedule.address on customer.addressID = address.addressId Left join client_schedule.city on address.cityId = city.cityId Left join client_schedule.country on city.countryId = country.countryId;";
+			MySqlCommand cmd = new MySqlCommand(sqlString, con);
+			MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+			DataTable findCC = new DataTable();
+
+			adp.Fill(findCC);
+			con.Close();
+
+			DataRow[] rows = findCC.Select("customerId = '" + iD + "'");
+
+			foreach (var row in rows)
+			{
+
+				string custCity = row["cityId"].ToString();
+				Int32.TryParse(custCity, out city);
+				CityId = city;
+
+				string custCountry = row["countryId"].ToString();
+				Int32.TryParse(custCountry, out country);
+				CountryId = country;
+
+			}
+
+			
+		}
+	}
 }

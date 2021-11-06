@@ -40,8 +40,8 @@ namespace KyleDelacruzc969.Pages
             this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.comboBoxCity = new System.Windows.Forms.ComboBox();
-            this.comboBoxCountry = new System.Windows.Forms.ComboBox();
+            this.textBoxCity = new System.Windows.Forms.TextBox();
+            this.textBoxCountry = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // labelAdd
@@ -141,42 +141,27 @@ namespace KyleDelacruzc969.Pages
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // comboBoxCity
+            // textBoxCity
             // 
-            this.comboBoxCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxCity.FormattingEnabled = true;
-            this.comboBoxCity.Items.AddRange(new object[] {
-            "New York",
-            "Los Angeles",
-            "Toronto",
-            "Vancouver",
-            "Oslo"});
-            this.comboBoxCity.Location = new System.Drawing.Point(144, 175);
-            this.comboBoxCity.Name = "comboBoxCity";
-            this.comboBoxCity.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxCity.TabIndex = 13;
-            this.comboBoxCity.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.textBoxCity.Location = new System.Drawing.Point(144, 175);
+            this.textBoxCity.Name = "textBoxCity";
+            this.textBoxCity.Size = new System.Drawing.Size(121, 20);
+            this.textBoxCity.TabIndex = 13;
             // 
-            // comboBoxCountry
+            // textBoxCountry
             // 
-            this.comboBoxCountry.Enabled = false;
-            this.comboBoxCountry.FormattingEnabled = true;
-            this.comboBoxCountry.Items.AddRange(new object[] {
-            "US",
-            "Canada",
-            "Norway"});
-            this.comboBoxCountry.Location = new System.Drawing.Point(144, 213);
-            this.comboBoxCountry.Name = "comboBoxCountry";
-            this.comboBoxCountry.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxCountry.TabIndex = 14;
+            this.textBoxCountry.Location = new System.Drawing.Point(144, 213);
+            this.textBoxCountry.Name = "textBoxCountry";
+            this.textBoxCountry.Size = new System.Drawing.Size(121, 20);
+            this.textBoxCountry.TabIndex = 14;
             // 
             // AddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(313, 450);
-            this.Controls.Add(this.comboBoxCountry);
-            this.Controls.Add(this.comboBoxCity);
+            this.Controls.Add(this.textBoxCountry);
+            this.Controls.Add(this.textBoxCity);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.textBoxPhone);
@@ -209,7 +194,7 @@ namespace KyleDelacruzc969.Pages
 		private System.Windows.Forms.TextBox textBoxPhone;
 		private System.Windows.Forms.Button buttonAdd;
 		private System.Windows.Forms.Button buttonCancel;
-		private System.Windows.Forms.ComboBox comboBoxCity;
-		private System.Windows.Forms.ComboBox comboBoxCountry;
-	}
+        private System.Windows.Forms.TextBox textBoxCity;
+        private System.Windows.Forms.TextBox textBoxCountry;
+    }
 }

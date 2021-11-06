@@ -35,8 +35,8 @@ namespace KyleDelacruzc969.Pages
 		{
 			name1 = textBoxName.Text;
 			address1 = textBoxAddress.Text;
-			city1 = comboBoxCity.Text;
-			country1 = comboBoxCountry.Text;
+			city1 = textBoxCity.Text;
+			country1 = textBoxCountry.Text;
 			phone1 = textBoxPhone.Text;
 
 
@@ -65,12 +65,16 @@ namespace KyleDelacruzc969.Pages
 			{
 				MessageBox.Show("Please enter a valid phone number");
 			}
-			else if(comboBoxCity.Text == string.Empty)
-            {
+			else if (textBoxCity.Text == string.Empty)
+			{
 				MessageBox.Show("please enter a city");
+			}
+			else if (textBoxCountry.Text == string.Empty)
+            {
+				MessageBox.Show("please enter a country");
             }
 
-			
+
 			else if (isCust == true)
 			{
 				MessageBox.Show("cannot create duplicate customer");
@@ -89,20 +93,20 @@ namespace KyleDelacruzc969.Pages
 		{
 			
 			
-			if (comboBoxCity.Text == "New York" || comboBoxCity.Text == "Los Angeles")
-			{
-				comboBoxCountry.Text = "US";
-			}
+			//if (comboBoxCity.Text == "New York" || comboBoxCity.Text == "Los Angeles")
+			//{
+			//	comboBoxCountry.Text = "US";
+			//}
 
-			else if (comboBoxCity.Text == "Toronto" || comboBoxCity.Text == "Vancouver")
-			{
-				comboBoxCountry.Text = "Canada";
-			}
+			//else if (comboBoxCity.Text == "Toronto" || comboBoxCity.Text == "Vancouver")
+			//{
+			//	comboBoxCountry.Text = "Canada";
+			//}
 
-			else 
-			{
-				comboBoxCountry.Text = "Norway";
-			}
+			//else 
+			//{
+			//	comboBoxCountry.Text = "Norway";
+			//}
 		}
 
         private void labelAdd_Click(object sender, EventArgs e)

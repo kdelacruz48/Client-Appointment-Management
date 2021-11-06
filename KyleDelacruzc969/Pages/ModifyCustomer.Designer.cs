@@ -29,8 +29,6 @@ namespace KyleDelacruzc969.Pages
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.comboBoxCountry = new System.Windows.Forms.ComboBox();
-            this.comboBoxCity = new System.Windows.Forms.ComboBox();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonModify = new System.Windows.Forms.Button();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
@@ -42,36 +40,9 @@ namespace KyleDelacruzc969.Pages
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
             this.labelModify = new System.Windows.Forms.Label();
+            this.textBoxCity = new System.Windows.Forms.TextBox();
+            this.textBoxCountry = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // comboBoxCountry
-            // 
-            this.comboBoxCountry.Enabled = false;
-            this.comboBoxCountry.FormattingEnabled = true;
-            this.comboBoxCountry.Items.AddRange(new object[] {
-            "US",
-            "Canada",
-            "Norway"});
-            this.comboBoxCountry.Location = new System.Drawing.Point(131, 214);
-            this.comboBoxCountry.Name = "comboBoxCountry";
-            this.comboBoxCountry.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxCountry.TabIndex = 27;
-            this.comboBoxCountry.SelectedIndexChanged += new System.EventHandler(this.comboBoxCountry_SelectedIndexChanged);
-            // 
-            // comboBoxCity
-            // 
-            this.comboBoxCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxCity.FormattingEnabled = true;
-            this.comboBoxCity.Items.AddRange(new object[] {
-            "New York",
-            "Los Angeles",
-            "Toronto",
-            "Vancouver",
-            "Oslo"});
-            this.comboBoxCity.Location = new System.Drawing.Point(131, 176);
-            this.comboBoxCity.Name = "comboBoxCity";
-            this.comboBoxCity.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxCity.TabIndex = 26;
             // 
             // buttonCancel
             // 
@@ -169,13 +140,27 @@ namespace KyleDelacruzc969.Pages
             this.labelModify.TabIndex = 15;
             this.labelModify.Text = "Modify customer";
             // 
+            // textBoxCity
+            // 
+            this.textBoxCity.Location = new System.Drawing.Point(131, 176);
+            this.textBoxCity.Name = "textBoxCity";
+            this.textBoxCity.Size = new System.Drawing.Size(121, 20);
+            this.textBoxCity.TabIndex = 26;
+            // 
+            // textBoxCountry
+            // 
+            this.textBoxCountry.Location = new System.Drawing.Point(131, 214);
+            this.textBoxCountry.Name = "textBoxCountry";
+            this.textBoxCountry.Size = new System.Drawing.Size(121, 20);
+            this.textBoxCountry.TabIndex = 27;
+            // 
             // ModifyCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(318, 450);
-            this.Controls.Add(this.comboBoxCountry);
-            this.Controls.Add(this.comboBoxCity);
+            this.Controls.Add(this.textBoxCountry);
+            this.Controls.Add(this.textBoxCity);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonModify);
             this.Controls.Add(this.textBoxPhone);
@@ -196,9 +181,6 @@ namespace KyleDelacruzc969.Pages
 		}
 
         #endregion
-
-        private System.Windows.Forms.ComboBox comboBoxCountry;
-        private System.Windows.Forms.ComboBox comboBoxCity;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonModify;
         private System.Windows.Forms.TextBox textBoxPhone;
@@ -210,5 +192,7 @@ namespace KyleDelacruzc969.Pages
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Label labelModify;
+        private System.Windows.Forms.TextBox textBoxCity;
+        private System.Windows.Forms.TextBox textBoxCountry;
     }
 }

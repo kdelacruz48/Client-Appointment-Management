@@ -38,7 +38,7 @@ namespace KyleDelacruzc969.classes
 			var address = customer.Address;
 			var cityID = customer.City;
 			var phone = customer.Phone;
-			int city;
+			var country = customer.Country;
 
 
 			if (Main.addressCount == 1)
@@ -47,31 +47,40 @@ namespace KyleDelacruzc969.classes
 				Help.getAddressID();
 			}
 
-			if (cityID == "New York" || cityID == "Los Angeles")
-			{
-				city = 1;
-			}
-			else if (cityID == "Toronto" || cityID == "Vancouver")
-			{
-				city = 2;
-			}
-			else
-			{
-				city = 3;
-			}
-
+			//if (cityID == "New York" || cityID == "Los Angeles")
+			//{
+			//	city = 1;
+			//}
+			//else if (cityID == "Toronto" || cityID == "Vancouver")
+			//{
+			//	city = 2;
+			//}
+			//else
+			//{
+			//	city = 3;
+			//}
+			var cityTemp = sql.Help.findLastCity();
 
 			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
 			MySqlConnection con = new MySqlConnection(connectionString);
 
 			con.Open();
 
-			string sqlStringAddress = "INSERT INTO address  VALUES('" + Main.addressCount + "','" + address + "','" + "" + "','" + city + "','" + 11111 + "','" + phone + "','" + "2019-01-01 00:00:00" + "','" + null + "','" + "2019-01-01 00:00:00" + "','" + null + "' )";
+			string sqlStringAddress = "INSERT INTO address  VALUES('" + Main.addressCount + "','" + address + "','" + "" + "','" + cityTemp+ "','" + 11111 + "','" + phone + "','" + "2019-01-01 00:00:00" + "','" + null + "','" + "2019-01-01 00:00:00" + "','" + null + "' )";
 			string sqlString = "INSERT INTO customer  VALUES('" + Main.addressCount + "','" + customer.CustomerName + "','" + Main.addressCount + "','" + 1 + "','" + "2019-01-01 00:00:00" + "','" + null + "','" + "2019-01-01 00:00:00" + "','" + null + "' )";
+			string sqlCity =  "INSERT INTO city VALUES ('" + cityTemp +"','" + cityID + "','" +cityTemp+ "','" + "2019-01-01 00:00:00" + "','" + null + "','" + "2019-01-01 00:00:00" + "','" + null + "' )";
+			string sqlCountry = "INSERT INTO country VALUES ('" +cityTemp+"','" +country+"','" + "2019-01-01 00:00:00" + "','" + null + "','" + "2019-01-01 00:00:00" + "','" + null + "' )";
 			MySqlCommand cmd = new MySqlCommand(sqlString, con);
 			MySqlCommand cmd1 = new MySqlCommand(sqlStringAddress, con);
+			MySqlCommand cmd2 = new MySqlCommand(sqlCity, con);
+			MySqlCommand cmd3 = new MySqlCommand(sqlCountry, con);
+
+			cmd3.ExecuteNonQuery();
+			cmd2.ExecuteNonQuery();
 			cmd1.ExecuteNonQuery();
 			cmd.ExecuteNonQuery();
+			
+			
 			con.Close();
 
 			Main.customerCount++;
