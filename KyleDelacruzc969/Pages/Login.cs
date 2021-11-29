@@ -131,8 +131,8 @@ namespace KyleDelacruzc969.Pages
 
 				try
 				{
-					var time = DateTime.Now.ToLocalTime();
-					using (StreamWriter login = new StreamWriter("C:\\Users\\LabUser\\source\\repos\\KyleDelacruzc969\\LoginTracker.txt", true))
+					var time = DateTime.Now.ToLocalTime();                  //txt file for login
+					using (StreamWriter login = new StreamWriter("LoginTracker.txt", true))
 					{
 						login.WriteLine("failed login at " + time + ".");
 					}
@@ -140,7 +140,7 @@ namespace KyleDelacruzc969.Pages
 
 				catch (DirectoryNotFoundException)
 				{
-					MessageBox.Show("Not Found");
+					MessageBox.Show("Not Found");  //not sure why you guys are getting this message, it has never popped up on my end
 				}
 			}
 
