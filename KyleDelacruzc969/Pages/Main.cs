@@ -73,6 +73,7 @@ namespace KyleDelacruzc969.Pages
 		public static DataGridViewRow CustomerIndex;
 		public static DataGridViewRow IndexRow;
 		public static DateTime modifyTime;
+		public static bool found;
 
 		private void buttonLogOut_Click(object sender, EventArgs e)
 		{
@@ -483,5 +484,81 @@ namespace KyleDelacruzc969.Pages
 			Reports R1 = new Reports();
 			R1.Show();
         }
+
+		private void buttonSearch_Click(object sender, EventArgs e)
+		{
+			string connectionString = ConfigurationManager.ConnectionStrings["MyMySqlKey"].ConnectionString;
+			MySqlConnection con = new MySqlConnection(connectionString);
+
+			con.Open();
+			string sqlAppointment = "SELECT appointmentId, customer.customerId, customerName, type, start, end, userId FROM client_schedule.customer INNER JOIN client_schedule.appointment on customer.customerId = appointment.customerId";
+
+			MySqlCommand cmd1 = new MySqlCommand(sqlAppointment, con);
+			MySqlDataReader reader = cmd1.ExecuteReader();
+			BindingList<Appointment> appointments = new BindingList<Appointment>();
+
+			if (reader.HasRows)
+			{
+				while (reader.Read())
+				{
+					appointments.Add(new Appointment(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2), reader.GetString(3), reader.GetDateTime(4).ToLocalTime(), reader.GetDateTime(5).ToLocalTime(), reader.GetInt32(6)));
+				}
+			}
+			else
+			{
+				MessageBox.Show("Empty list");
+			}
+			reader.Close();
+
+
+
+			BindingList<Appointment> temp = new BindingList<Appointment>();
+			found = false;
+			if (textBoxSearch.Text != "")
+			{
+				for (int i = 0; i < appointments.Count; i++)
+				{
+                    dataGridViewSearch.DataSource = appointments;
+                    var tempIndex = dataGridViewSearch.Rows[i];
+
+					var a1 = tempIndex.Cells[0].Value + string.Empty;
+					var a2 = tempIndex.Cells[1].Value + string.Empty;
+					var a3 = tempIndex.Cells[2].Value + string.Empty;
+					var a4 = tempIndex.Cells[3].Value + string.Empty;
+					var a5 = tempIndex.Cells[4].Value + string.Empty;
+					var a6 = tempIndex.Cells[5].Value + string.Empty;
+					var a7 = tempIndex.Cells[6].Value + string.Empty;
+
+					string row = a1 + a2 + a3 + a4 + a5 + a6 + a7;
+
+					if (row.ToUpper().Contains(textBoxSearch.Text.ToUpper()))
+					{
+						temp.Add(appointments[i]);
+						found = true;
+					}
+
+				}
+			}
+				if (found == true)
+				{
+					dataGridViewSearch.DataSource = temp;
+					found = false;
+					
+				}
+
+				else
+				{
+					MessageBox.Show("Nothing found");
+					dataGridViewSearch.DataSource = null;
+				}
+
+			}
+
+        private void dataGridViewSearch_SelectionChanged(object sender, EventArgs e)
+        {
+			dataGridViewSearch.ClearSelection();
+        }
     }
-}
+	}
+    
+
