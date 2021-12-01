@@ -512,7 +512,7 @@ namespace KyleDelacruzc969.Pages
 
 
 
-			BindingList<Appointment> temp = new BindingList<Appointment>();
+			BindingList<Client> temp = new BindingList<Client>();
 			found = false;
 			if (textBoxSearch.Text != "")
 			{
@@ -533,7 +533,27 @@ namespace KyleDelacruzc969.Pages
 
 					if (row.ToUpper().Contains(textBoxSearch.Text.ToUpper()))
 					{
-						temp.Add(appointments[i]);
+
+						if(a3 == "Presentation")
+                        {
+							PresentationAppointment client = new PresentationAppointment(a1,a2,a3,a4,a5,a6,a7);
+							temp.Add(client);
+							
+                        }
+						
+						else if(a3 != "Presentation")
+                        {
+							OtherAppointment client = new OtherAppointment(a1, a2, a3, a4, a5, a6, a7);
+							temp.Add(client);
+							
+						}
+
+						var isPres = PresentationAppointment.IsPresentation(a3);
+						if (isPres == true)
+                        {
+							MessageBox.Show( a2 + " Has an upcoming presentation on " + a4);
+                        }
+
 						found = true;
 					}
 

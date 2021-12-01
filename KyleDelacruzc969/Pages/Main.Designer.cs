@@ -48,6 +48,7 @@ namespace KyleDelacruzc969.Pages
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.dataGridViewSearch = new System.Windows.Forms.DataGridView();
             this.labelSearch = new System.Windows.Forms.Label();
+            this.labelx = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSearch)).BeginInit();
@@ -247,11 +248,21 @@ namespace KyleDelacruzc969.Pages
             this.labelSearch.TabIndex = 18;
             this.labelSearch.Text = "Appointment Search";
             // 
+            // labelx
+            // 
+            this.labelx.AutoSize = true;
+            this.labelx.Location = new System.Drawing.Point(219, 10);
+            this.labelx.Name = "labelx";
+            this.labelx.Size = new System.Drawing.Size(170, 13);
+            this.labelx.TabIndex = 19;
+            this.labelx.Text = "(will show upcoming presentations)";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(927, 624);
+            this.Controls.Add(this.labelx);
             this.Controls.Add(this.labelSearch);
             this.Controls.Add(this.dataGridViewSearch);
             this.Controls.Add(this.textBoxSearch);
@@ -303,5 +314,6 @@ namespace KyleDelacruzc969.Pages
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.DataGridView dataGridViewSearch;
         private System.Windows.Forms.Label labelSearch;
+        private System.Windows.Forms.Label labelx;
     }
 }

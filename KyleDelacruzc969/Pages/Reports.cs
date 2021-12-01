@@ -136,6 +136,9 @@ namespace KyleDelacruzc969.Pages
 					dgvReports.DataSource = appointments;
 				}
 			}
+
+			
+
 			else   // shows a report with a list of customers and their phone numbers
 			{
 
@@ -184,6 +187,11 @@ namespace KyleDelacruzc969.Pages
 			comboBox1.Enabled = false;
 			comboBox2.Enabled = false;
 			comboBox3.Enabled = false;
+		}
+
+        private void radioButtonCustomerCountry_CheckedChanged(object sender, EventArgs e)
+        {
+			
 		}
     }
 }

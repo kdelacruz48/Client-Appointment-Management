@@ -91,7 +91,10 @@
   <ItemGroup>
     <Compile Include="classes\Appointment.cs" />
     <Compile Include="classes\Check.cs" />
+    <Compile Include="classes\Client.cs" />
     <Compile Include="classes\Customer.cs" />
+    <Compile Include="classes\OtherAppointment.cs" />
+    <Compile Include="classes\PresentationAppointment.cs" />
     <Compile Include="Pages\AddAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
