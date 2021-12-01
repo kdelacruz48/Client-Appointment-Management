@@ -533,26 +533,34 @@ namespace KyleDelacruzc969.Pages
 
 					if (row.ToUpper().Contains(textBoxSearch.Text.ToUpper()))
 					{
-
-						if(a3 == "Presentation")
+						PresentationAppointment client = new PresentationAppointment(a1, a2, a3, a4, a5, a6, a7);
+						OtherAppointment oClient = new OtherAppointment(a1, a2, a3, a4, a4, a6, a7);
+						if (a3 == "Presentation")
                         {
-							PresentationAppointment client = new PresentationAppointment(a1,a2,a3,a4,a5,a6,a7);
+							
 							temp.Add(client);
 							
                         }
 						
 						else if(a3 != "Presentation")
                         {
-							OtherAppointment client = new OtherAppointment(a1, a2, a3, a4, a5, a6, a7);
-							temp.Add(client);
+							
+							temp.Add(oClient);
 							
 						}
 
-						var isPres = PresentationAppointment.IsPresentation(a3);
+						var isPres = client.getType(a3);
+						var isNotPres = oClient.getType(a3);
+
 						if (isPres == true)
                         {
 							MessageBox.Show( a2 + " Has an upcoming presentation on " + a4);
                         }
+
+						//if (isNotPres == true)
+      //                  {
+						//	MessageBox.Show("no appointment here");       //this was just to prove my overide method works as intended
+      //                  }
 
 						found = true;
 					}

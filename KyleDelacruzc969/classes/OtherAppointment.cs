@@ -26,5 +26,15 @@ namespace KyleDelacruzc969.classes
             this.CustomerId = CustomerId;
 
         }
+
+        public override bool getType(string type)
+        {
+            if (type != "Presentation")
+            {
+                return true;
+
+            }
+            return false;
+        }
     }
 }

@@ -16,5 +16,14 @@ namespace KyleDelacruzc969.classes
         public string UserId { get; set; }
         public string CustomerId { get; set; }
 
+
+
+
+        public virtual bool getType(string type)
+        {
+            return false;
+        }
     }
+
+
 }

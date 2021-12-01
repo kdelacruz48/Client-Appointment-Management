@@ -27,7 +27,7 @@ namespace KyleDelacruzc969.classes
         }
 
 
-        public static bool IsPresentation(string type)
+        public override bool getType(string type)
         {
             if (type == "Presentation")
             {
