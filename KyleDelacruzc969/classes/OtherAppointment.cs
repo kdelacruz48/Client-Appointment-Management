@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KyleDelacruzc969.classes
 {
-    class OtherAppointment : Client
+    public class OtherAppointment : Client
     {
         public string OtherType { get; set; }
 

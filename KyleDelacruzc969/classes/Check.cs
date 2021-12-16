@@ -9,7 +9,7 @@ namespace KyleDelacruzc969.classes
 
     
 
-    class Check
+    public class Check
     {
 
 
